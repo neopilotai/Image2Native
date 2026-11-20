@@ -1,0 +1,335 @@
+{
+  "schemaVersion": 1,
+  "indexGeneration": {
+    "timestamp": "2026-11-20T00:00:00Z",
+    "generator": "Devin Autonomous Coding Agent",
+    "generatorVersion": "1.0",
+    "purpose": "Agent-Ready Codebase Index for Image2Native repository"
+  },
+  "repository": {
+    "name": "Image2Native",
+    "gitCommit": "f42f10a",
+    "gitBranch": "main",
+    "gitStatus": {
+      "branch": "main",
+      "uncommittedChanges": [
+        "README.md (modified)",
+        "docs/index.md (modified)",
+        "flycheck artifacts (modified)"
+      ],
+      "deletedFiles": [
+        "DOCS-MANIFEST.json",
+        "DOCUMENTATION-CHECKLIST.md",
+        "FILE-MANIFEST.json"
+      ]
+    },
+    "workspace": {
+      "root": "/workspaces/Image2Native",
+      "memberCount": 34,
+      "resolver": "3",
+      "rustVersion": "1.85",
+      "edition": "2024"
+    }
+  },
+  "statistics": {
+    "totalPackages": 34,
+    "libraryCrates": 31,
+    "applicationCrates": 3,
+    "repositoryComponents": 9,
+    "sourceFiles": 180,
+    "indexedPackages": 34,
+    "dependencyEdges": 6,
+    "boundaryViolations": 0,
+    "taskGraphIssues": 0
+  },
+  "implementationStatus": {
+    "implemented": 2,
+    "partial": 5,
+    "scaffolded": 27,
+    "missing": 0,
+    "blocked": 0
+  },
+  "breakdown": {
+    "domain": {
+      "total": 1,
+      "implemented": 0,
+      "partial": 1,
+      "scaffolded": 0
+    },
+    "foundation": {
+      "total": 4,
+      "implemented": 0,
+      "partial": 2,
+      "scaffolded": 2
+    },
+    "content": {
+      "total": 4,
+      "implemented": 0,
+      "partial": 0,
+      "scaffolded": 4
+    },
+    "oci": {
+      "total": 2,
+      "implemented": 0,
+      "partial": 0,
+      "scaffolded": 2
+    },
+    "filesystem": {
+      "total": 4,
+      "implemented": 0,
+      "partial": 0,
+      "scaffolded": 4
+    },
+    "analysis": {
+      "total": 3,
+      "implemented": 0,
+      "partial": 1,
+      "scaffolded": 2
+    },
+    "contracts": {
+      "total": 1,
+      "implemented": 0,
+      "partial": 1,
+      "scaffolded": 0
+    },
+    "compiler": {
+      "total": 1,
+      "implemented": 0,
+      "partial": 0,
+      "scaffolded": 1
+    },
+    "artifact": {
+      "total": 2,
+      "implemented": 0,
+      "partial": 0,
+      "scaffolded": 2
+    },
+    "trust": {
+      "total": 3,
+      "implemented": 0,
+      "partial": 0,
+      "scaffolded": 3
+    },
+    "platformContract": {
+      "total": 1,
+      "implemented": 0,
+      "partial": 1,
+      "scaffolded": 0
+    },
+    "runtime": {
+      "total": 4,
+      "implemented": 0,
+      "partial": 0,
+      "scaffolded": 4
+    },
+    "security": {
+      "total": 1,
+      "implemented": 0,
+      "partial": 0,
+      "scaffolded": 1
+    },
+    "platformLinux": {
+      "total": 1,
+      "implemented": 0,
+      "partial": 0,
+      "scaffolded": 1
+    },
+    "platformMacos": {
+      "total": 1,
+      "implemented": 0,
+      "partial": 0,
+      "scaffolded": 1
+    },
+    "platformWindows": {
+      "total": 1,
+      "implemented": 0,
+      "partial": 0,
+      "scaffolded": 1
+    },
+    "app": {
+      "total": 3,
+      "implemented": 0,
+      "partial": 1,
+      "scaffolded": 2
+    }
+  },
+  "validationResults": {
+    "baselineVerification": {
+      "status": "PASS",
+      "workspacePackagesPresent": 34,
+      "requiredPackagesMissing": 0,
+      "unapprovedPackagesAdded": 0,
+      "repositoryComponentsPresent": 9,
+      "requiredComponentsMissing": 0,
+      "unapprovedComponentsAdded": 0,
+      "requiredFilesMissing": 0,
+      "controlFilesChanged": 0
+    },
+    "boundaryVerification": {
+      "status": "PASS",
+      "violations": 0,
+      "forbiddenEdges": 0,
+      "unapprovedExternalDependencies": 0
+    },
+    "taskGraphVerification": {
+      "status": "PASS",
+      "tasks": 26,
+      "done": 4,
+      "inProgress": 1,
+      "blocked": 0,
+      "todo": 21,
+      "cycles": 0,
+      "missingDependencies": 0,
+      "doneWithoutEvidence": 0
+    },
+    "cargoMetadata": {
+      "status": "VALID",
+      "workspaceMembers": 34,
+      "packagesResolved": 34
+    }
+  },
+  "toolAvailability": {
+    "python": {
+      "available": true,
+      "version": "3.11.2",
+      "automationScript": "scripts/i2n.py",
+      "status": "WORKING"
+    },
+    "cargo": {
+      "available": true,
+      "version": "1.100.0",
+      "status": "WORKING"
+    },
+    "rustc": {
+      "available": true,
+      "version": "1.100.0",
+      "status": "WORKING"
+    },
+    "git": {
+      "available": true,
+      "version": "2.56.1",
+      "status": "WORKING"
+    },
+    "rustAnalyzer": {
+      "available": false,
+      "notes": "Not checked; assume available in development environment"
+    },
+    "ripgrep": {
+      "available": true,
+      "notes": "Used via grep tool"
+    },
+    "fd": {
+      "available": true,
+      "notes": "File discovery tool"
+    }
+  },
+  "generatedFiles": [
+    {
+      "path": "docs/engineering/CODEBASE-INDEX.md",
+      "purpose": "Complete repository overview and navigation guide",
+      "size": "Large",
+      "format": "Markdown"
+    },
+    {
+      "path": "docs/engineering/package-catalog.json",
+      "purpose": "Machine-readable package inventory",
+      "size": "Medium",
+      "format": "JSON"
+    },
+    {
+      "path": "docs/engineering/dependency-graph.mmd",
+      "purpose": "Mermaid dependency graph visualization",
+      "size": "Small",
+      "format": "Mermaid"
+    },
+    {
+      "path": "docs/engineering/IMPLEMENTATION-READINESS.md",
+      "purpose": "Feature matrix and technical blockers",
+      "size": "Large",
+      "format": "Markdown"
+    },
+    {
+      "path": "docs/engineering/IMPLEMENTATION-START.md",
+      "purpose": "First concrete implementation task",
+      "size": "Medium",
+      "format": "Markdown"
+    },
+    {
+      "path": "docs/engineering/index-metadata.json",
+      "purpose": "Index generation metadata and statistics",
+      "size": "Small",
+      "format": "JSON"
+    },
+    {
+      "path": "AGENTS.md",
+      "purpose": "Root agent instructions for autonomous agents",
+      "size": "Medium",
+      "format": "Markdown"
+    }
+  ],
+  "documentationReferences": {
+    "codebaseIndex": "docs/engineering/CODEBASE-INDEX.md",
+    "packageCatalog": "docs/engineering/package-catalog.json",
+    "dependencyGraph": "docs/engineering/dependency-graph.mmd",
+    "implementationReadiness": "docs/engineering/IMPLEMENTATION-READINESS.md",
+    "implementationStart": "docs/engineering/IMPLEMENTATION-START.md",
+    "agentInstructions": "AGENTS.md",
+    "architectureDocs": "docs/architecture/",
+    "platformDocs": "docs/platforms/",
+    "securityDocs": "docs/security/",
+    "developerDocs": "docs/developer/",
+    "projectDocs": "docs/project/"
+  },
+  "keyFindings": {
+    "repositoryMaturity": "Phase 0/1 scaffold",
+    "compilerImplemented": false,
+    "ociIngestionImplemented": false,
+    "rootfsCompilerImplemented": false,
+    "platformBackendsImplemented": false,
+    "automationImplemented": true,
+    "firstImplementationTask": "I2N-0202: Define structured diagnostic codes and error policy",
+    "estimatedTimeToFirstArtifact": "3-4 months",
+    "estimatedTimeToFullLinuxSupport": "4-5 months",
+    "estimatedTimeToDesktopSupport": "6-8 months"
+  },
+  "unresolvedReferences": [],
+  "notes": [
+    "Repository is in scaffold phase with complete architecture and governance",
+    "Only 5 crates have partial implementation (i2n-model, i2n-diagnostics, i2n-ir, i2n-platform, image2native-cli)",
+    "27 crates are scaffolded with only status markers",
+    "Zero internal dependency edges exist; dependency graph will evolve with implementation",
+    "All boundary validations pass",
+    "All task graph validations pass",
+    "First implementation task (I2N-0202) is ready with no blockers",
+    "No external dependencies are used yet; decisions needed for HTTP, crypto, compression libraries"
+  ],
+  "nextSteps": [
+    "Implement I2N-0202: Define structured diagnostic codes and error policy",
+    "Implement I2N-0201: Finalize domain IDs, digest and target platform model",
+    "Make external dependency decisions (HTTP client, digest library, compression)",
+    "Begin OCI ingestion implementation (I2N-0301, I2N-0302, I2N-0303)"
+  ],
+  "regenerationProcedure": {
+    "trigger": "After structural changes to workspace, boundaries, or significant implementation progress",
+    "commands": [
+      "python3 scripts/i2n.py status",
+      "python3 scripts/i2n.py inventory --check",
+      "python3 scripts/i2n.py validate",
+      "cargo metadata --no-deps --format-version 1",
+      "Update docs/engineering/CODEBASE-INDEX.md with current implementation status",
+      "Update docs/engineering/package-catalog.json with current package data",
+      "Update docs/engineering/dependency-graph.mmd with current dependencies",
+      "Update docs/engineering/IMPLEMENTATION-READINESS.md with current feature matrix",
+      "Update docs/engineering/IMPLEMENTATION-START.md with next ready task",
+      "Update docs/engineering/index-metadata.json with current metadata"
+    ],
+    "validation": [
+      "Verify all JSON files are valid",
+      "Verify Mermaid graph syntax",
+      "Verify all referenced source paths exist",
+      "Verify referenced line numbers are accurate",
+      "Run baseline verification",
+      "Run boundary verification"
+    ]
+  }
+}

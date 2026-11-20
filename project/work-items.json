@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "project": "Image2Native",
+  "statuses": [
+    "todo",
+    "in_progress",
+    "blocked",
+    "done"
+  ],
+  "items": [
+    {
+      "id": "I2N-0001",
+      "title": "Import and index product documentation",
+      "phase": 0,
+      "priority": "P0",
+      "status": "done",
+      "owner": "docs",
+      "scope": "repository-foundation",
+      "boundary": "documentation",
+      "depends_on": [],
+      "acceptance_criteria": [
+        "White paper and engineering blueprint are present.",
+        "Architecture, platform, security, developer and roadmap docs are indexed."
+      ],
+      "evidence": [
+        "README.md",
+        "WHITEPAPER.md",
+        "BLUEPRINT.md",
+        "docs/index.md"
+      ]
+    },
+    {
+      "id": "I2N-0002",
+      "title": "Create Rust workspace and crate scaffold",
+      "phase": 1,
+      "priority": "P0",
+      "status": "done",
+      "owner": "foundation",
+      "scope": "repository-foundation",
+      "boundary": "workspace",
+      "depends_on": [
+        "I2N-0001"
+      ],
+      "acceptance_criteria": [
+        "Cargo workspace declares every app and crate listed in the boundary inventory.",
+        "Every member has a manifest and source entrypoint.",
+        "No external dependencies are required by the initial scaffold."
+      ],
+      "evidence": [
+        "Cargo.toml",
+        "crates/",
+        "apps/"
+      ]
+    },
+    {
+      "id": "I2N-0003",
+      "title": "Implement automated TODO, boundary and baseline control",
+      "phase": 1,
+      "priority": "P0",
+      "status": "done",
+      "owner": "foundation",
+      "scope": "repository-foundation",
+      "boundary": "project-automation",
+      "depends_on": [
+        "I2N-0002"
+      ],
+      "acceptance_criteria": [
+        "Task dependencies and done-evidence rules are validated.",
+        "Cargo workspace membership and dependency edges are inventoried.",
+        "Protected baseline structure is verifiable.",
+        "Generated reports can be regenerated deterministically."
+      ],
+      "evidence": [
+        "scripts/i2n.py",
+        "project/work-items.json",
+        "project/boundaries.json",
+        "project/baseline.json",
+        "reports/"
+      ]
+    },
+    {
+      "id": "I2N-0004",
+      "title": "Add cross-platform CI and contributor workflow",
+      "phase": 1,
+      "priority": "P0",
+      "status": "done",
+      "owner": "foundation",
+      "scope": "repository-foundation",
+      "boundary": "ci",
+      "depends_on": [
+        "I2N-0003"
+      ],
+      "acceptance_criteria": [
+        "CI runs repository automation and Rust fmt, Clippy and tests.",
+        "Contributor workflow documents the mandatory implementation loop."
+      ],
+      "evidence": [
+        ".github/workflows/ci.yml",
+        "CONTRIBUTING.md",
+        "docs/project/WORKFLOW.md"
+      ]
+    },
+    {
+      "id": "I2N-0101",
+      "title": "Install and verify supported Rust toolchain in maintainer environments",
+      "phase": 1,
+      "priority": "P0",
+      "status": "todo",
+      "owner": "foundation",
+      "scope": "toolchain",
+      "boundary": "workspace",
+      "depends_on": [
+        "I2N-0002"
+      ],
+      "acceptance_criteria": [
+        "Rust stable, rustfmt and Clippy are available.",
+        "cargo fmt, cargo test and cargo clippy pass on Linux, macOS and Windows CI."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-0201",
+      "title": "Finalize domain IDs, digest and target platform model",
+      "phase": 2,
+      "priority": "P0",
+      "status": "in_progress",
+      "owner": "domain",
+      "scope": "compiler-core",
+      "boundary": "i2n-model",
+      "depends_on": [
+        "I2N-0002"
+      ],
+      "acceptance_criteria": [
+        "Target triples are parsed and normalized.",
+        "Digest algorithm and encoded value validation is fully specified.",
+        "Image references and platform identity have golden and invalid fixtures."
+      ],
+      "evidence": [
+        "crates/i2n-model/src/lib.rs"
+      ]
+    },
+    {
+      "id": "I2N-0202",
+      "title": "Define structured diagnostic codes and error policy",
+      "phase": 2,
+      "priority": "P1",
+      "status": "todo",
+      "owner": "foundation",
+      "scope": "compiler-core",
+      "boundary": "i2n-diagnostics",
+      "depends_on": [
+        "I2N-0002"
+      ],
+      "acceptance_criteria": [
+        "Every pipeline failure has a stable code and stage.",
+        "Retryability and remediation are explicit.",
+        "Secret values and private paths are redacted."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-0301",
+      "title": "Implement OCI image reference and descriptor parsing",
+      "phase": 3,
+      "priority": "P0",
+      "status": "todo",
+      "owner": "oci",
+      "scope": "image-ingestion",
+      "boundary": "i2n-oci",
+      "depends_on": [
+        "I2N-0201"
+      ],
+      "acceptance_criteria": [
+        "Registry, repository, tag and digest references are parsed.",
+        "OCI descriptor/media-type constraints have positive and negative fixtures.",
+        "Manifest, index and config validation is bounded."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-0302",
+      "title": "Implement OCI Distribution registry client",
+      "phase": 3,
+      "priority": "P0",
+      "status": "todo",
+      "owner": "registry",
+      "scope": "image-ingestion",
+      "boundary": "i2n-registry",
+      "depends_on": [
+        "I2N-0301"
+      ],
+      "acceptance_criteria": [
+        "Pull pinned manifests and blobs with TLS.",
+        "Support credential provider interface without logging secrets.",
+        "Support manifest platform selection and retryable network failures."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-0303",
+      "title": "Implement bounded blob fetching and digest verification",
+      "phase": 3,
+      "priority": "P0",
+      "status": "todo",
+      "owner": "content",
+      "scope": "image-ingestion",
+      "boundary": "i2n-fetcher",
+      "depends_on": [
+        "I2N-0201",
+        "I2N-0202",
+        "I2N-0302"
+      ],
+      "acceptance_criteria": [
+        "Blob size and digest are verified before cache promotion.",
+        "Downloads are bounded, cancellable and resumable where safe.",
+        "Partial downloads are never visible as verified content."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-0401",
+      "title": "Build atomic content-addressed layer cache",
+      "phase": 4,
+      "priority": "P1",
+      "status": "todo",
+      "owner": "content",
+      "scope": "image-ingestion",
+      "boundary": "i2n-cache",
+      "depends_on": [
+        "I2N-0303"
+      ],
+      "acceptance_criteria": [
+        "Cache keys derive from verified digests.",
+        "Concurrent writers cannot publish partial objects.",
+        "Verify, prune and offline cache commands have tests."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-0501",
+      "title": "Implement safe OCI layer decode and extraction",
+      "phase": 5,
+      "priority": "P0",
+      "status": "todo",
+      "owner": "filesystem",
+      "scope": "filesystem",
+      "boundary": "i2n-layer/i2n-unpack",
+      "depends_on": [
+        "I2N-0303"
+      ],
+      "acceptance_criteria": [
+        "Supported compression formats are explicit.",
+        "Path traversal, escaping symlinks, hardlinks and quotas are handled safely.",
+        "Whiteout semantics have adversarial fixtures and fuzz targets."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-0601",
+      "title": "Reconstruct logical RootFS with OCI layer semantics",
+      "phase": 6,
+      "priority": "P0",
+      "status": "todo",
+      "owner": "filesystem",
+      "scope": "filesystem",
+      "boundary": "i2n-rootfs",
+      "depends_on": [
+        "I2N-0501"
+      ],
+      "acceptance_criteria": [
+        "Layer order and whiteouts match OCI semantics.",
+        "Mode, ownership, links and provenance are preserved.",
+        "Golden RootFS fixtures match expected trees."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-0701",
+      "title": "Implement image config inspector and NIR v0.1",
+      "phase": 7,
+      "priority": "P0",
+      "status": "todo",
+      "owner": "contracts",
+      "scope": "compiler-core",
+      "boundary": "i2n-inspector/i2n-ir",
+      "depends_on": [
+        "I2N-0601",
+        "I2N-0201"
+      ],
+      "acceptance_criteria": [
+        "Entrypoint, command, env, cwd, user, ports, stop signal and healthcheck are normalized.",
+        "Unknown required fields are rejected or explicitly preserved.",
+        "NIR schema and golden fixtures are versioned."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-0801",
+      "title": "Build compatibility analyzer and explicit backend planner",
+      "phase": 8,
+      "priority": "P0",
+      "status": "todo",
+      "owner": "analysis",
+      "scope": "compiler-core",
+      "boundary": "i2n-analyzer",
+      "depends_on": [
+        "I2N-0701"
+      ],
+      "acceptance_criteria": [
+        "OS, architecture, ABI, kernel and backend requirements are reported.",
+        "Unsupported features are never silently dropped.",
+        "Backend selection is explainable and policy-driven."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-0901",
+      "title": "Integrate Linux OCI runtime backend",
+      "phase": 9,
+      "priority": "P0",
+      "status": "todo",
+      "owner": "linux",
+      "scope": "linux-runtime",
+      "boundary": "i2n-platform-linux",
+      "depends_on": [
+        "I2N-0801"
+      ],
+      "acceptance_criteria": [
+        "Run supported images without Docker Engine.",
+        "Rootless mode, namespaces, cgroups, seccomp and capabilities are tested.",
+        "No privileged mode is enabled implicitly."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-1001",
+      "title": "Implement I2N artifact format and Linux launcher",
+      "phase": 10,
+      "priority": "P0",
+      "status": "todo",
+      "owner": "artifact",
+      "scope": "artifact",
+      "boundary": "i2n-artifact/i2n-platform-linux",
+      "depends_on": [
+        "I2N-0901"
+      ],
+      "acceptance_criteria": [
+        "Manifest and payload graph are versioned.",
+        "Artifact integrity is verified before install/run.",
+        "Launcher supports install, run, inspect and uninstall lifecycle."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-1101",
+      "title": "Add SBOM, provenance and artifact signing",
+      "phase": 11,
+      "priority": "P1",
+      "status": "todo",
+      "owner": "trust",
+      "scope": "supply-chain",
+      "boundary": "i2n-sbom/i2n-signing/i2n-provenance",
+      "depends_on": [
+        "I2N-1001"
+      ],
+      "acceptance_criteria": [
+        "SPDX SBOM scope is documented.",
+        "Build provenance binds source digest and toolchain identity.",
+        "Signature verification rejects tampered artifacts."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-1201",
+      "title": "Harden Linux install, update, rollback and runtime security",
+      "phase": 12,
+      "priority": "P0",
+      "status": "todo",
+      "owner": "linux",
+      "scope": "linux-runtime",
+      "boundary": "runtime/security",
+      "depends_on": [
+        "I2N-1101"
+      ],
+      "acceptance_criteria": [
+        "Interrupted updates retain last-known-good artifact.",
+        "Rollback protection and writable state policy are tested.",
+        "Threat-model high-risk findings have mitigations and evidence."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-1301",
+      "title": "Build minimal Linux guest and authenticated guest agent",
+      "phase": 13,
+      "priority": "P1",
+      "status": "todo",
+      "owner": "guest",
+      "scope": "desktop-runtime",
+      "boundary": "guest/agent",
+      "depends_on": [
+        "I2N-1001"
+      ],
+      "acceptance_criteria": [
+        "Kernel/init/guest image versions are pinned.",
+        "Host-guest protocol is authenticated and versioned.",
+        "Guest image is reproducible and integrity checked."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-1401",
+      "title": "Implement macOS Virtualization backend and app packaging",
+      "phase": 14,
+      "priority": "P1",
+      "status": "todo",
+      "owner": "macos",
+      "scope": "desktop-runtime",
+      "boundary": "i2n-platform-macos",
+      "depends_on": [
+        "I2N-1301"
+      ],
+      "acceptance_criteria": [
+        "Supported Apple Silicon and Intel host matrix is explicit.",
+        "Linux guest can boot and run a packaged app.",
+        "Signing, entitlements, networking and shared storage are tested."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-1501",
+      "title": "Implement Windows WSL2 backend and launcher",
+      "phase": 15,
+      "priority": "P1",
+      "status": "todo",
+      "owner": "windows",
+      "scope": "desktop-runtime",
+      "boundary": "i2n-platform-windows",
+      "depends_on": [
+        "I2N-1301"
+      ],
+      "acceptance_criteria": [
+        "WSL2 prerequisites are preflighted and explained.",
+        "Guest provision/start/stop and port forwarding are tested.",
+        "Windows installer and launcher lifecycle are documented."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-1701",
+      "title": "Add Windows-native OCI image backend through HCS",
+      "phase": 17,
+      "priority": "P2",
+      "status": "todo",
+      "owner": "windows",
+      "scope": "windows-native-runtime",
+      "boundary": "i2n-platform-windows",
+      "depends_on": [
+        "I2N-1501"
+      ],
+      "acceptance_criteria": [
+        "Windows image OS/version compatibility is checked.",
+        "Windows container semantics have a separate test matrix.",
+        "Linux image backend and Windows image backend remain distinct."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-1801",
+      "title": "Add source-to-native compilation mode",
+      "phase": 18,
+      "priority": "P2",
+      "status": "todo",
+      "owner": "toolchains",
+      "scope": "source-compiler",
+      "boundary": "source-toolchains",
+      "depends_on": [
+        "I2N-1001"
+      ],
+      "acceptance_criteria": [
+        "Source mode is independent from OCI image packaging.",
+        "Rust and Go are initial toolchain integrations.",
+        "Output is validated as actual target-native ELF/Mach-O/PE."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-1901",
+      "title": "Add supported Docker Compose application groups",
+      "phase": 19,
+      "priority": "P2",
+      "status": "todo",
+      "owner": "compiler",
+      "scope": "multi-service",
+      "boundary": "i2n-compiler/i2n-runtime",
+      "depends_on": [
+        "I2N-1201",
+        "I2N-1401",
+        "I2N-1501"
+      ],
+      "acceptance_criteria": [
+        "Supported Compose subset is versioned.",
+        "Service dependencies, networks and volumes are modeled.",
+        "Unsupported keys are reported instead of ignored."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "I2N-2001",
+      "title": "Prepare 1.0 support matrix, release and operations readiness",
+      "phase": 20,
+      "priority": "P1",
+      "status": "todo",
+      "owner": "release",
+      "scope": "release",
+      "boundary": "release-engineering",
+      "depends_on": [
+        "I2N-1201",
+        "I2N-1401",
+        "I2N-1501"
+      ],
+      "acceptance_criteria": [
+        "Every claimed target has real-host integration evidence.",
+        "Upgrade/rollback, signing, SBOM and license notices are reviewed.",
+        "Release artifacts and compatibility matrix are reproducible."
+      ],
+      "evidence": []
+    }
+  ]
+}

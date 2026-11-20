@@ -1,0 +1,13 @@
+[package]
+name = "i2n-security"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+i2n-model = { path = "../i2n-model" }
+i2n-diagnostics = { path = "../i2n-diagnostics" }
+i2n-signing = { path = "../i2n-signing" }
+i2n-sbom = { path = "../i2n-sbom" }
+i2n-provenance = { path = "../i2n-provenance" }

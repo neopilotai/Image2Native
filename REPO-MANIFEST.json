@@ -1,0 +1,906 @@
+{
+  "project": "Image2Native",
+  "version": "0.1.0",
+  "generated": "2026-11-20",
+  "fileCount": 180,
+  "workspacePackageCount": 34,
+  "repositoryComponentCount": 9,
+  "taskCount": 26,
+  "files": [
+    {
+      "path": ".editorconfig",
+      "sizeBytes": 187,
+      "sha256": "a3f82a8880334c59ad404e7fdef3df79718c573ecd832388d9a5974337265051"
+    },
+    {
+      "path": ".gitattributes",
+      "sizeBytes": 85,
+      "sha256": "379e9d324fe884a7ad1bbe991b9e29fcd4b7ee546f1dbdfd8cf2d4cbddb0e0cc"
+    },
+    {
+      "path": ".githooks/pre-commit",
+      "sizeBytes": 141,
+      "sha256": "ef0eda86f306e39a9e9934989a071552cb50824bcc1b11890c959936949c0be1"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "sizeBytes": 630,
+      "sha256": "b9b95460b7a9f5409a0c2600f6162a89947262cd1d2ba0fd792612f17300bc42"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "sizeBytes": 199,
+      "sha256": "0950d2d435f4fb13394b845d41e83f2acac6ac8ccd5fe1b7163ccf3abc858a38"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "sizeBytes": 799,
+      "sha256": "aa5a12ff9e6548f93fca37affe8a0d923f8fee18df5107e5da01b40e6ce10199"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sizeBytes": 942,
+      "sha256": "bd26ba2976f59cf29fbeba9a985a196d6fd4073d7a9c0aa5bce309938b47aaac"
+    },
+    {
+      "path": ".gitignore",
+      "sizeBytes": 164,
+      "sha256": "9b9ed4a31f38c4cfd5f9bb2bc4b2b2c15743be68ca7959597468df23bfe0ca5c"
+    },
+    {
+      "path": "BLUEPRINT.md",
+      "sizeBytes": 11870,
+      "sha256": "1530737c25fd0aac912b7d097e2508c098f5e41d8f5cac7542a3d9d0d27cc241"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sizeBytes": 505,
+      "sha256": "9f9984bc96f1bc622a27d01979935e4ee2478cf7dc5f727c1c54de30caa07c7a"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sizeBytes": 1530,
+      "sha256": "30ad28a441f9050d8aca72ae62cca34135ca1ea507ee053e315bd3b09c15290d"
+    },
+    {
+      "path": "Cargo.lock",
+      "sizeBytes": 2790,
+      "sha256": "57c3c98d3826a39663b4bd7bfd0a32ae9f8ffa4253724e9626332b75a2a07e1e"
+    },
+    {
+      "path": "Cargo.toml",
+      "sizeBytes": 1215,
+      "sha256": "0694b0e0f8ec56738d958098e1107b0c10a52cd0376fa4b3c109f80c1869c858"
+    },
+    {
+      "path": "Makefile",
+      "sizeBytes": 730,
+      "sha256": "b5515ade749c09fc97bbf34f4f1854f49092525ab50e991eea39b18dc369e8d0"
+    },
+    {
+      "path": "README.md",
+      "sizeBytes": 3949,
+      "sha256": "9b38f0cefbb5ef452e9cf5a233d26b9ef832340285b3616aa88c892c1d4accc1"
+    },
+    {
+      "path": "REPO-MANIFEST.json",
+      "sizeBytes": 28171,
+      "sha256": "cf97b6c581a77c9e2bf4f10fa19a373472223da5440630e599994fd72a199eb8"
+    },
+    {
+      "path": "SECURITY.md",
+      "sizeBytes": 956,
+      "sha256": "d4c5c880d55cadddde222ebfec0d2c51dfe8c20677fcba4d637ec465451e3dff"
+    },
+    {
+      "path": "TODO.md",
+      "sizeBytes": 10888,
+      "sha256": "b0430f82601bbd2fb8004d00f059829fb944c21b15c45225036af8229babbc72"
+    },
+    {
+      "path": "WHITEPAPER.md",
+      "sizeBytes": 9321,
+      "sha256": "1a7656845736a84cd324283a4b6e3ce9ed95e3ae7e0f4ebba85e7be356550255"
+    },
+    {
+      "path": "apps/image2native-cli/Cargo.toml",
+      "sizeBytes": 256,
+      "sha256": "ab74d9167181c7aa3bdea63fbe00ea138b5f599f0138c948b73cbf202499dc7e"
+    },
+    {
+      "path": "apps/image2native-cli/README.md",
+      "sizeBytes": 98,
+      "sha256": "224de4d3a882f9456e955d585bed0936552be12fb985439bec0ad524ccd21c5f"
+    },
+    {
+      "path": "apps/image2native-cli/src/main.rs",
+      "sizeBytes": 2295,
+      "sha256": "e79757b52c770a6120424fbad0d5e62350b44363d41dc9add75a02773bb42fc7"
+    },
+    {
+      "path": "apps/image2native-daemon/Cargo.toml",
+      "sizeBytes": 135,
+      "sha256": "2cb367c974b6521c07cb06261c7baa8f7afe0b722e801972ec1361ca79dc888c"
+    },
+    {
+      "path": "apps/image2native-daemon/README.md",
+      "sizeBytes": 103,
+      "sha256": "c8137b344eb8a143ba24c41b5ea780f61c515e364dd906a3669544f55367cb10"
+    },
+    {
+      "path": "apps/image2native-daemon/src/main.rs",
+      "sizeBytes": 104,
+      "sha256": "762fc70a5587224c2e24a4df924be3189903c092d940e499fc61704cd948575a"
+    },
+    {
+      "path": "apps/image2native-launcher/Cargo.toml",
+      "sizeBytes": 137,
+      "sha256": "f9c020ade38d2da7d180ef994f673aacca4a9fa31485426661c7d0f59171ef31"
+    },
+    {
+      "path": "apps/image2native-launcher/README.md",
+      "sizeBytes": 91,
+      "sha256": "df4761aa4ea3e4d7fa2acc8502fa48280a9332e4e9e57edbcc46a2752d1f2d8a"
+    },
+    {
+      "path": "apps/image2native-launcher/src/main.rs",
+      "sizeBytes": 106,
+      "sha256": "3ca2669edfa9ed4110fc2ca8da3b85aa7f81caebe949251856515591e5a3d629"
+    },
+    {
+      "path": "crates/i2n-analyzer/Cargo.toml",
+      "sizeBytes": 264,
+      "sha256": "3192c99e820441fb27034158ace53ed54b4eeb128c64a1489aea071f787b90fa"
+    },
+    {
+      "path": "crates/i2n-analyzer/README.md",
+      "sizeBytes": 307,
+      "sha256": "566bf1e38db709062f8ea3b639fdc71538eebca72b9a4568c19a250abac50ab4"
+    },
+    {
+      "path": "crates/i2n-analyzer/src/lib.rs",
+      "sizeBytes": 438,
+      "sha256": "e38a17a6e062518e33dec991f918f67329aba114619928ae27106cbe5be49115"
+    },
+    {
+      "path": "crates/i2n-archive/Cargo.toml",
+      "sizeBytes": 127,
+      "sha256": "3f8e8a08dd44fedaa49d2d67cb0fcb3f77bc2d8e973d9298ee0c2ab073ac77bd"
+    },
+    {
+      "path": "crates/i2n-archive/README.md",
+      "sizeBytes": 299,
+      "sha256": "63d23619dde192b6e17f28631648b0cc56433c3ddc5ddff034784adfd37086e6"
+    },
+    {
+      "path": "crates/i2n-archive/src/lib.rs",
+      "sizeBytes": 417,
+      "sha256": "e26d0fdf9b37c21dc9563bd43c1bf899d944e46106cb531d6e6af8d0d0963b0f"
+    },
+    {
+      "path": "crates/i2n-artifact/Cargo.toml",
+      "sizeBytes": 304,
+      "sha256": "64cc52fa76d95d8f48d9ea5068d4af3f60053a0e5819ea60a4c85d0d04fc33fb"
+    },
+    {
+      "path": "crates/i2n-artifact/README.md",
+      "sizeBytes": 307,
+      "sha256": "208d708f9fcb2cd0ca07d56aa726cdad8d48a60d6bacd533e5b10ad202aa160d"
+    },
+    {
+      "path": "crates/i2n-artifact/src/lib.rs",
+      "sizeBytes": 438,
+      "sha256": "30b09f1b04d8920fffc71f6ed52d2ab5ca55ce8c92e587e159266f08313e7cc8"
+    },
+    {
+      "path": "crates/i2n-cache/Cargo.toml",
+      "sizeBytes": 125,
+      "sha256": "afb6bae205f0803bc9376fb047c33c0ad2e661243336c5cd893afdf8c903d7e3"
+    },
+    {
+      "path": "crates/i2n-cache/README.md",
+      "sizeBytes": 303,
+      "sha256": "00f459f730c592cd7e2f642f837db190cd4149839d25695e748a99acbb70574c"
+    },
+    {
+      "path": "crates/i2n-cache/src/lib.rs",
+      "sizeBytes": 438,
+      "sha256": "a538c74fa0685bb511eea3639a747b284743467415f314b1e11b1f97b1d0e3cb"
+    },
+    {
+      "path": "crates/i2n-compiler/Cargo.toml",
+      "sizeBytes": 510,
+      "sha256": "790cee05c9e03543afb44ade97063e7d0601d075d83f0cd5c36038f97e7e2501"
+    },
+    {
+      "path": "crates/i2n-compiler/README.md",
+      "sizeBytes": 322,
+      "sha256": "a2568c1c2179e1b5430ef21fd2575560ce31d5b9e22a8253750ac6d2816babe1"
+    },
+    {
+      "path": "crates/i2n-compiler/src/lib.rs",
+      "sizeBytes": 487,
+      "sha256": "aae7e0ef2132bc00e2b6bc67336dff761ac9441828c139a7b51b1cb3d904ad90"
+    },
+    {
+      "path": "crates/i2n-config/Cargo.toml",
+      "sizeBytes": 126,
+      "sha256": "aeb480333d418037dd73f2912b24791008e0b025a7c949cf20465dce93911cb5"
+    },
+    {
+      "path": "crates/i2n-config/README.md",
+      "sizeBytes": 299,
+      "sha256": "f534e3ce32377d3195d15117e7a94b4827401f8fd7f78f04b747fc83edbf59f5"
+    },
+    {
+      "path": "crates/i2n-config/src/lib.rs",
+      "sizeBytes": 414,
+      "sha256": "26dab01fc4d04fb85fca23dbec716012b541ca64114002a57b4dfe499cc366da"
+    },
+    {
+      "path": "crates/i2n-diagnostics/Cargo.toml",
+      "sizeBytes": 131,
+      "sha256": "63e9c009c9cce471006ceb0e4ee94b3c1fbdefd49da75dfef26574344e5d99fd"
+    },
+    {
+      "path": "crates/i2n-diagnostics/README.md",
+      "sizeBytes": 325,
+      "sha256": "8feebe00d34993c58eb648dcf79ab930617edc4b9279a64dff105b480a7d88c1"
+    },
+    {
+      "path": "crates/i2n-diagnostics/src/lib.rs",
+      "sizeBytes": 1088,
+      "sha256": "c165825bc51a06c92016363fc41ffe4a6d575c969eff8a00596181c98b092489"
+    },
+    {
+      "path": "crates/i2n-digest/Cargo.toml",
+      "sizeBytes": 126,
+      "sha256": "23b9365306361a136b98d5e99110bb665b51debf86d61a794c2d33f2597f8c0d"
+    },
+    {
+      "path": "crates/i2n-digest/README.md",
+      "sizeBytes": 302,
+      "sha256": "2add76b0ac05df4fb9c781974fc129a34546ea6e133df69cad553b8dde914795"
+    },
+    {
+      "path": "crates/i2n-digest/src/lib.rs",
+      "sizeBytes": 432,
+      "sha256": "dac8d8d9389825d87c81239f3b30ec51a2f7450d7297d301fb31fd071db52fcf"
+    },
+    {
+      "path": "crates/i2n-fetcher/Cargo.toml",
+      "sizeBytes": 127,
+      "sha256": "8753489ce3380e6e2481179c1ab262da17ff1333663f10b76a1b32eb2b398c30"
+    },
+    {
+      "path": "crates/i2n-fetcher/README.md",
+      "sizeBytes": 300,
+      "sha256": "e6354ed39437f530e8d2365eaca230e20cc05b3831f022e6399534eaf392cd0d"
+    },
+    {
+      "path": "crates/i2n-fetcher/src/lib.rs",
+      "sizeBytes": 423,
+      "sha256": "e90d6dc4665d9d05a232d58794683a036314836875752fea65f2ffc88b2dfa8a"
+    },
+    {
+      "path": "crates/i2n-filesystem/Cargo.toml",
+      "sizeBytes": 130,
+      "sha256": "a03a0a655a9e08f34809e93f4eade841c146d2690c6c901545d916288e34c344"
+    },
+    {
+      "path": "crates/i2n-filesystem/README.md",
+      "sizeBytes": 309,
+      "sha256": "73de9d98b43b6092828287f15fcc767ae7bd38a5be21b59e5dbecf372c27dc2a"
+    },
+    {
+      "path": "crates/i2n-filesystem/src/lib.rs",
+      "sizeBytes": 432,
+      "sha256": "da4440929c9a88f7e3ae9043a57d14deb67faf11c846f5cffa7d578bf6106912"
+    },
+    {
+      "path": "crates/i2n-inspector/Cargo.toml",
+      "sizeBytes": 129,
+      "sha256": "084382d5320dea1e4972798c8e126070eff8120b64dbe09f57a88e0838062c40"
+    },
+    {
+      "path": "crates/i2n-inspector/README.md",
+      "sizeBytes": 298,
+      "sha256": "03d3e3e5dc96e60ca8435bdfd1139bebe634ce3c4ae37af0204ea13b700c5c13"
+    },
+    {
+      "path": "crates/i2n-inspector/src/lib.rs",
+      "sizeBytes": 408,
+      "sha256": "4afbd50fef8bc6f8d3dd8e5bf7733a5897d3dd28e735ed0b33150346ea6e5d8f"
+    },
+    {
+      "path": "crates/i2n-ir/Cargo.toml",
+      "sizeBytes": 226,
+      "sha256": "ba4164bac1ddab03200d633e305f20a6281a9d6f82dfbbb77d1391d0e5cfb91c"
+    },
+    {
+      "path": "crates/i2n-ir/README.md",
+      "sizeBytes": 297,
+      "sha256": "84b13cd1c91bd8105460e92a053a14510f0bab158a17931bca6758868c3c374f"
+    },
+    {
+      "path": "crates/i2n-ir/src/lib.rs",
+      "sizeBytes": 653,
+      "sha256": "f3f17d01caad985dd8307e26ce815f172515121953e7db89913be04b4d8b5e8c"
+    },
+    {
+      "path": "crates/i2n-layer/Cargo.toml",
+      "sizeBytes": 125,
+      "sha256": "538262f21526b994ccb7add52ceeb2ffedb2c8d8caf1dcdd78bb3b188743d36b"
+    },
+    {
+      "path": "crates/i2n-layer/README.md",
+      "sizeBytes": 301,
+      "sha256": "fca3c06480c5a74a5ae351b5dd2058d9428c84dbae8790ccfe37e4233a4d31f6"
+    },
+    {
+      "path": "crates/i2n-layer/src/lib.rs",
+      "sizeBytes": 423,
+      "sha256": "997224f95fee675a767b3bf7d59a8a9466550328f9b8c26d91a8b3d156eed5f1"
+    },
+    {
+      "path": "crates/i2n-model/Cargo.toml",
+      "sizeBytes": 125,
+      "sha256": "0fd9c5029317e6d50dae495490ca40a6adc7fb70caca3472b5084c2ead46ea42"
+    },
+    {
+      "path": "crates/i2n-model/README.md",
+      "sizeBytes": 328,
+      "sha256": "2a598745bc66a24ed413e82401f05b0e65850bcc8442f28f623d0298cf287ee1"
+    },
+    {
+      "path": "crates/i2n-model/src/lib.rs",
+      "sizeBytes": 4063,
+      "sha256": "9a8962da87f4b275e2a097f874a8232dfb5a39c32a767c37653780eff50091dc"
+    },
+    {
+      "path": "crates/i2n-network/Cargo.toml",
+      "sizeBytes": 127,
+      "sha256": "61cc8367e0147f5a54bd2633b188fb16504bf8be3eeea9b151d83ed34742a733"
+    },
+    {
+      "path": "crates/i2n-network/README.md",
+      "sizeBytes": 298,
+      "sha256": "4b9c1fe01f117a212276857116f6831f87545ac46af0f3feffaa7af7ba6717d5"
+    },
+    {
+      "path": "crates/i2n-network/src/lib.rs",
+      "sizeBytes": 417,
+      "sha256": "f0c05bf0eebfd31d4681ad08888bf9ab4bba51b60c2c91ce4ccca3cd6fc24883"
+    },
+    {
+      "path": "crates/i2n-oci/Cargo.toml",
+      "sizeBytes": 123,
+      "sha256": "4a5fe4026b914bad9cbcdf34514ec5c5523b66351b2b3502bc7b06242f1106c1"
+    },
+    {
+      "path": "crates/i2n-oci/README.md",
+      "sizeBytes": 295,
+      "sha256": "6c132091e88b1ad699b4d3b0902b6ff20ea3c48720ea47ed6f5a76523248b91f"
+    },
+    {
+      "path": "crates/i2n-oci/src/lib.rs",
+      "sizeBytes": 432,
+      "sha256": "9cdb0732fe7b4aba3cc6990e7eaa52126d27723d32cf68591aa53118f896f940"
+    },
+    {
+      "path": "crates/i2n-platform/Cargo.toml",
+      "sizeBytes": 128,
+      "sha256": "cd0b4e83ac8f21b62e7ebc1b6216c813547a9e5f89e56108039edad13939c63a"
+    },
+    {
+      "path": "crates/i2n-platform/README.md",
+      "sizeBytes": 312,
+      "sha256": "182ce6723299851ce025f55819c3e90fd30899a873f3f1f74c07ae53fc3a0731"
+    },
+    {
+      "path": "crates/i2n-platform/src/lib.rs",
+      "sizeBytes": 595,
+      "sha256": "e5eca8d09071dc5d788b20082179c2200f7f657efe01dba8a90f26f537f654e9"
+    },
+    {
+      "path": "crates/i2n-platform-linux/Cargo.toml",
+      "sizeBytes": 282,
+      "sha256": "acc770d1add0ea812aecc954992fdfca6bb143a068e03ea807e08eacbe31144d"
+    },
+    {
+      "path": "crates/i2n-platform-linux/README.md",
+      "sizeBytes": 326,
+      "sha256": "19627709b7e187e71b95c7a4bad47caa8eb849a5aea80e3d8592896c57284e19"
+    },
+    {
+      "path": "crates/i2n-platform-linux/src/lib.rs",
+      "sizeBytes": 463,
+      "sha256": "aa35c820762f50e795d6b30e368e858ab150008857e80dba1bce474f742aebf2"
+    },
+    {
+      "path": "crates/i2n-platform-macos/Cargo.toml",
+      "sizeBytes": 282,
+      "sha256": "15c8553f3fc3a64e638d7a182394fa17eec9a8ad12363baa04b89e5c47ec5697"
+    },
+    {
+      "path": "crates/i2n-platform-macos/README.md",
+      "sizeBytes": 323,
+      "sha256": "6f540cf4ce7b5df8914207e7ff10da196f2d654e573cb013b32b6ab8f049baa5"
+    },
+    {
+      "path": "crates/i2n-platform-macos/src/lib.rs",
+      "sizeBytes": 450,
+      "sha256": "ae5a49a1c036cf97257f2f2bf6ff6192ae9ef3f79cde56ceb10af42af1fe1b08"
+    },
+    {
+      "path": "crates/i2n-platform-windows/Cargo.toml",
+      "sizeBytes": 284,
+      "sha256": "62b8b84cf0f121efbaf28f2542c7fb0aa3c0e3da3cac4119f67088ca21643caa"
+    },
+    {
+      "path": "crates/i2n-platform-windows/README.md",
+      "sizeBytes": 313,
+      "sha256": "f274e89ca0c064329d8eb86d2c6baff43595e5be1e8b97c6d8906acf8e6defda"
+    },
+    {
+      "path": "crates/i2n-platform-windows/src/lib.rs",
+      "sizeBytes": 408,
+      "sha256": "706bdcb92950e0f7914be30a9dab3cfb7d5901b3104b66a615833c43ad6f992d"
+    },
+    {
+      "path": "crates/i2n-protocol/Cargo.toml",
+      "sizeBytes": 128,
+      "sha256": "00e9e80141abe6e3be0ca327888441931703ce596675dced120327bcd5a30932"
+    },
+    {
+      "path": "crates/i2n-protocol/README.md",
+      "sizeBytes": 310,
+      "sha256": "53b0582405b2a439b26d4daecb130e50712e55a7e3513108bd2e312032ae741b"
+    },
+    {
+      "path": "crates/i2n-protocol/src/lib.rs",
+      "sizeBytes": 441,
+      "sha256": "f6b14f8ca2afccbb19947f2d4b323a56a8cf35d3ff80ad55b5ed9e304cf1b725"
+    },
+    {
+      "path": "crates/i2n-provenance/Cargo.toml",
+      "sizeBytes": 130,
+      "sha256": "3e4894840e099624b3eca6c5fc6050847b7e9302372a33811eabf92a73b8dfac"
+    },
+    {
+      "path": "crates/i2n-provenance/README.md",
+      "sizeBytes": 294,
+      "sha256": "7c0241a93aa7bd3826d6a71fb78eef630bf847978b25dad5a10661dab14cb630"
+    },
+    {
+      "path": "crates/i2n-provenance/src/lib.rs",
+      "sizeBytes": 402,
+      "sha256": "81190cd95fd07870c64c570fbda59e23e2a85c2a93e7e9f04801655f7053192e"
+    },
+    {
+      "path": "crates/i2n-registry/Cargo.toml",
+      "sizeBytes": 128,
+      "sha256": "6c6f274f740eaf138ddaab79262d1cf3dd34476cc1ff6f58720d78e3bcb7c367"
+    },
+    {
+      "path": "crates/i2n-registry/README.md",
+      "sizeBytes": 309,
+      "sha256": "58be66e942724af4e3ce5c3f7de1cc5b508e221a67e57505b485a47bcce0a49e"
+    },
+    {
+      "path": "crates/i2n-registry/src/lib.rs",
+      "sizeBytes": 463,
+      "sha256": "2dc0e069f9615c8e1638a30634852a77c509f26c469d34fd937faa1b8dc9c7d9"
+    },
+    {
+      "path": "crates/i2n-rootfs/Cargo.toml",
+      "sizeBytes": 126,
+      "sha256": "7598a73046880565097b8d6e7b01c05ee91e84a53fcc4227f764ad32591d3156"
+    },
+    {
+      "path": "crates/i2n-rootfs/README.md",
+      "sizeBytes": 293,
+      "sha256": "e312ce7a14f3257dc2fe9fb2425c64d2b25f2b7e83e113b297bc6c1f7adf2147"
+    },
+    {
+      "path": "crates/i2n-rootfs/src/lib.rs",
+      "sizeBytes": 396,
+      "sha256": "aa263fd4fa4fd10378884d06c776420f3b21c7c19eb0d30582536c68daba2422"
+    },
+    {
+      "path": "crates/i2n-runtime/Cargo.toml",
+      "sizeBytes": 319,
+      "sha256": "0afe50709e556ad107fad5e12b5cf6b289acc06d80950d24bc401fa8e9e61657"
+    },
+    {
+      "path": "crates/i2n-runtime/README.md",
+      "sizeBytes": 302,
+      "sha256": "f001e00aabee9cf03905347840012c7ba178455bdb0d2149bbac898d14cd1115"
+    },
+    {
+      "path": "crates/i2n-runtime/src/lib.rs",
+      "sizeBytes": 429,
+      "sha256": "5315d3da5abf94062a032cb129f5e10b813d9e4f3fdd8e11883195ee4abaa965"
+    },
+    {
+      "path": "crates/i2n-sbom/Cargo.toml",
+      "sizeBytes": 124,
+      "sha256": "3518e33046f1e4ffb24ccc0dd0f49e1605aac8556388cb51df66a085ec9c9ee4"
+    },
+    {
+      "path": "crates/i2n-sbom/README.md",
+      "sizeBytes": 283,
+      "sha256": "826eb4955756fa66e1cf771f058830408541e2a0bf3a1ccd0b33955f19b2e74d"
+    },
+    {
+      "path": "crates/i2n-sbom/src/lib.rs",
+      "sizeBytes": 387,
+      "sha256": "3de8652a2ba411fcb900f0436ad6c43010193caaa9dc2a9a1d1a0ba814be80f3"
+    },
+    {
+      "path": "crates/i2n-security/Cargo.toml",
+      "sizeBytes": 358,
+      "sha256": "eac3df13889eb6c70256d089d674717d859687552a334f1c1b8d90ff869b1106"
+    },
+    {
+      "path": "crates/i2n-security/README.md",
+      "sizeBytes": 302,
+      "sha256": "969d2b3620db8b1d710234fd47fc57f0cfd17ff74656960294f76e749d78da1d"
+    },
+    {
+      "path": "crates/i2n-security/src/lib.rs",
+      "sizeBytes": 423,
+      "sha256": "cb930be50e6cf9c105e667db8c84638ae78c578b476a597861b03c61b21eeb4c"
+    },
+    {
+      "path": "crates/i2n-signing/Cargo.toml",
+      "sizeBytes": 127,
+      "sha256": "f3c7b7cdd07ebc9885035f2285ef3f1360c129cb583429b1ce7f4e6b1d305db6"
+    },
+    {
+      "path": "crates/i2n-signing/README.md",
+      "sizeBytes": 295,
+      "sha256": "9bdbbf57a5a4b74e57118eb5b0c70e2ec225465ae708701e642ff28d6c34b55b"
+    },
+    {
+      "path": "crates/i2n-signing/src/lib.rs",
+      "sizeBytes": 414,
+      "sha256": "7a02805f246fa4963fc2221e9575574c8ff048be0e6f2315a682b2d1c297ac38"
+    },
+    {
+      "path": "crates/i2n-storage/Cargo.toml",
+      "sizeBytes": 127,
+      "sha256": "9acbf81eab3b0f176ac5d645452d07224621a74f62b24cd72475191573927db6"
+    },
+    {
+      "path": "crates/i2n-storage/README.md",
+      "sizeBytes": 301,
+      "sha256": "e741952c306a08bdfe76209e2b958fe450346fa8f427fc8204221ee4798f759f"
+    },
+    {
+      "path": "crates/i2n-storage/src/lib.rs",
+      "sizeBytes": 426,
+      "sha256": "32f8ff43cc7e00c2db5d31e9f88d73eb187fb31d9be36e9348897dbbaf0c3b05"
+    },
+    {
+      "path": "crates/i2n-supervisor/Cargo.toml",
+      "sizeBytes": 276,
+      "sha256": "c888c6260cf1fe070e99f83a8648ce2364215af1af21a2ce5a2bed8ffdf33043"
+    },
+    {
+      "path": "crates/i2n-supervisor/README.md",
+      "sizeBytes": 305,
+      "sha256": "a147645db7828a029af5ca450f79edc39399228793ab11d9e0179ee57f330885"
+    },
+    {
+      "path": "crates/i2n-supervisor/src/lib.rs",
+      "sizeBytes": 429,
+      "sha256": "ed3a97130c5779db8942d6740c1813aea83104307d1e4a9fcbb0330c43be68bd"
+    },
+    {
+      "path": "crates/i2n-unpack/Cargo.toml",
+      "sizeBytes": 126,
+      "sha256": "6cf3beedd81f93d12c812b1501598b6d6b007abbfb0f06444bf292dd0c7d217d"
+    },
+    {
+      "path": "crates/i2n-unpack/README.md",
+      "sizeBytes": 296,
+      "sha256": "0360bd4f4100f96001cf436684e1b270815ea94ce182a6b413dcee0327288d6d"
+    },
+    {
+      "path": "crates/i2n-unpack/src/lib.rs",
+      "sizeBytes": 405,
+      "sha256": "8a3b12245a8685d30b69487b46c3b9eb23f7e8adde4850908a6dc98d743580ee"
+    },
+    {
+      "path": "docs/adr/0001-oci-as-input-contract.md",
+      "sizeBytes": 1059,
+      "sha256": "05616b429a217222604fc8ed2b699aa81bf352dc82b6a3e38cfe78eb0ba24387"
+    },
+    {
+      "path": "docs/adr/0002-nir-boundary.md",
+      "sizeBytes": 1030,
+      "sha256": "586832445cc01be92aa5435ce87adc4d06aecc81b812e24414e832d69efd31b8"
+    },
+    {
+      "path": "docs/adr/0003-guest-for-linux-images-on-desktop-hosts.md",
+      "sizeBytes": 1340,
+      "sha256": "aec37defb5ffd7d261a64ad87545f7eb477728176352b7c9328f735f93643ba8"
+    },
+    {
+      "path": "docs/architecture/ARTIFACT_FORMAT.md",
+      "sizeBytes": 4567,
+      "sha256": "7998ac9fc6cabfefbf6c1b9b61b49478947fd6aae5985837de2414426a516111"
+    },
+    {
+      "path": "docs/architecture/BACKEND_CONTRACT.md",
+      "sizeBytes": 3338,
+      "sha256": "7dc016b52564f79c74be28964a58cb9b8340ec33f443395baef18608c9587993"
+    },
+    {
+      "path": "docs/architecture/COMPILER_PIPELINE.md",
+      "sizeBytes": 5212,
+      "sha256": "2b35304c04befeca5cfc44a9414e0534376c68b23a8592e82bc1ed1a319c907c"
+    },
+    {
+      "path": "docs/architecture/NIR_SPEC.md",
+      "sizeBytes": 5154,
+      "sha256": "8c7c7168a7bc7f1e0ed9230bd886d266d66df06971c8108b97ff371e7e29fa7d"
+    },
+    {
+      "path": "docs/architecture/SYSTEM_ARCHITECTURE.md",
+      "sizeBytes": 5332,
+      "sha256": "eda200a84138b883233325edee503149f3c65c1869e5ae4ec59e985dd61fd550"
+    },
+    {
+      "path": "docs/developer/BUILD_AND_TEST.md",
+      "sizeBytes": 3370,
+      "sha256": "7ca17f156b37845a16327c6133dc6f2aa599023b7c772a2181ba8bc4e2e8ed77"
+    },
+    {
+      "path": "docs/developer/CLI_SPEC.md",
+      "sizeBytes": 4097,
+      "sha256": "ac066400d394cb6fff0d7c35d96dfaf79ebea9e3c1b886f95e9fa5e269ea4fc4"
+    },
+    {
+      "path": "docs/developer/CONTRIBUTING.md",
+      "sizeBytes": 1552,
+      "sha256": "3eca3de51ee9b63a171f5b9ef858bf0bcf3290fdd80866b8a551505cdf11833f"
+    },
+    {
+      "path": "docs/developer/REPOSITORY_LAYOUT.md",
+      "sizeBytes": 2945,
+      "sha256": "a07de0b410b51ae558cf6a21c565a2cad60f1aa9858ee43fcb484ad57f343512"
+    },
+    {
+      "path": "docs/glossary.md",
+      "sizeBytes": 1714,
+      "sha256": "1ec90e475f124ff8829a4b0f3339ce99d269dd462d7064333a9fcb2a8c735e45"
+    },
+    {
+      "path": "docs/index.md",
+      "sizeBytes": 1345,
+      "sha256": "116487290eacf6e005edce564ab5f842c5bfcc977fa6d8ddff796b9d64ac52c6"
+    },
+    {
+      "path": "docs/operations/RELEASE.md",
+      "sizeBytes": 2911,
+      "sha256": "91074bc4bd6d485dfc8b04b7f93bb8ebda4dfc8518b6f5907a5f27832afb1396"
+    },
+    {
+      "path": "docs/platforms/LINUX.md",
+      "sizeBytes": 3365,
+      "sha256": "159a4df1e911f86cb2e6cd4099c6f1bf26dda0e8a5f331f36adbbcd0a83332cd"
+    },
+    {
+      "path": "docs/platforms/MACOS.md",
+      "sizeBytes": 3654,
+      "sha256": "0e5d711b11048ac37f4ea1dd114fc06cbb522c2e18e1dc8bfc59b561b4492c13"
+    },
+    {
+      "path": "docs/platforms/PLATFORM_SUPPORT.md",
+      "sizeBytes": 3296,
+      "sha256": "0871412937afa687fd34c26306dcf48d576346a4f8f18753f8a57addd1dfed63"
+    },
+    {
+      "path": "docs/platforms/WINDOWS.md",
+      "sizeBytes": 2842,
+      "sha256": "3b6295c1813e6e700d6e023c6c38e75978e41d9cce130974954153f9ef87da5c"
+    },
+    {
+      "path": "docs/product/PRODUCT_REQUIREMENTS.md",
+      "sizeBytes": 5156,
+      "sha256": "61bdc0bdd680f77c5e2151f4fdc93498e0781d219621d3cc2d4b1c9552a78532"
+    },
+    {
+      "path": "docs/project/BASELINE.md",
+      "sizeBytes": 1665,
+      "sha256": "6a93f36a841db118d3963f6a7de96b04d714b454e7c7cda01a55eb8de743c634"
+    },
+    {
+      "path": "docs/project/BOUNDARIES.md",
+      "sizeBytes": 2219,
+      "sha256": "89a32a219a214f1d8cd93ea5627119df4247d4a48b174a4048ced73df63cd582"
+    },
+    {
+      "path": "docs/project/IMPLEMENTATION-PROCESS.md",
+      "sizeBytes": 1237,
+      "sha256": "df5b8b1707db105c68ccf919ad367969b5fab110f632ec7a71345897faa0b6b0"
+    },
+    {
+      "path": "docs/project/TASKS-AND-AUTOMATION.md",
+      "sizeBytes": 968,
+      "sha256": "71cbf1d2537952bf695a2999e2f715076fc7e3338790bada45e4a53c7ed2dd2a"
+    },
+    {
+      "path": "docs/project/WORKFLOW.md",
+      "sizeBytes": 2774,
+      "sha256": "071c998d53a990a1f61b4e6ec992830aee848f3fc569abe93289dce265c9c788"
+    },
+    {
+      "path": "docs/references.md",
+      "sizeBytes": 3688,
+      "sha256": "35316d38605c0084196feaff335afbd2bcf26eee3e97239a3a7f58c90a6d4d89"
+    },
+    {
+      "path": "docs/roadmap/ROADMAP.md",
+      "sizeBytes": 5409,
+      "sha256": "5c6e91f135a6aa668e9f7e8e2d11a1a9bfb3fe03d31af7136e47f953e1e9fa75"
+    },
+    {
+      "path": "docs/security/SECURITY_MODEL.md",
+      "sizeBytes": 4462,
+      "sha256": "af0eb282064007a581812c6addb4e72e834490b4d8e63071c81d135632b45250"
+    },
+    {
+      "path": "docs/security/THREAT_MODEL.md",
+      "sizeBytes": 4104,
+      "sha256": "ebb2a0df1f2276336d4ce16b80500dd095352b49cd22425fdace09c50e349d4a"
+    },
+    {
+      "path": "guest/README.md",
+      "sizeBytes": 198,
+      "sha256": "5e9bf918d19c5b0a08d5ef20da3e427743c9aaf1a6b15207fdb033d8220eabdf"
+    },
+    {
+      "path": "platform/linux/README.md",
+      "sizeBytes": 181,
+      "sha256": "7fb0d0d6f0b677be3b5557bb855d07dffd548098d1310b3fa2b63b9d87388cb0"
+    },
+    {
+      "path": "platform/macos/README.md",
+      "sizeBytes": 166,
+      "sha256": "9d792486991515f9cd001890f99b898a545a93f5d4ed68663d0901832b7b080f"
+    },
+    {
+      "path": "platform/windows/README.md",
+      "sizeBytes": 143,
+      "sha256": "9bb75b9520dc2e1e6066a4a455cde531f69c908b0518a4edfe50716e4378cbd1"
+    },
+    {
+      "path": "project/baseline.json",
+      "sizeBytes": 3961,
+      "sha256": "ea364255d3c50eddbf3f3dcddc40b08c3987f53bf038774797cd47e5d8da1eca"
+    },
+    {
+      "path": "project/boundaries.json",
+      "sizeBytes": 17775,
+      "sha256": "a51c35d7ebf7e24cae42142462991d7af536b8fd38e57c837e73705359ae7190"
+    },
+    {
+      "path": "project/project.json",
+      "sizeBytes": 575,
+      "sha256": "6818528036d8fe3173eb24401fa621484c4d72f49badd2a70271d28d843acf48"
+    },
+    {
+      "path": "project/work-items.json",
+      "sizeBytes": 15685,
+      "sha256": "65afafc781513803df9967af325ebc4f996fd43d14bf245d4f03fa0292f50511"
+    },
+    {
+      "path": "reports/baseline.md",
+      "sizeBytes": 825,
+      "sha256": "26991590af8f66be934640e63f1399db6a9204c9ba9979f3dcabc3300206a22d"
+    },
+    {
+      "path": "reports/boundary-inventory.json",
+      "sizeBytes": 24321,
+      "sha256": "82a4a42a535f4cf4a44fd7bf07d833fbe69e183958653496880c76802787e058"
+    },
+    {
+      "path": "reports/boundary-inventory.md",
+      "sizeBytes": 8564,
+      "sha256": "c9cc9036a4d09a6330567b6fff0ae83594c7d0926639a182d25d00a3c6bbbbc6"
+    },
+    {
+      "path": "reports/checklist.md",
+      "sizeBytes": 3124,
+      "sha256": "632f7865ce428a96181b361a448f9711b38f2fde78b44dd0a7274fc78c67c93f"
+    },
+    {
+      "path": "reports/project-status.md",
+      "sizeBytes": 630,
+      "sha256": "13571d3788cc89c7d36004bff048aca39caa0a27bb153c94b729817133490ae2"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "sizeBytes": 86,
+      "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13"
+    },
+    {
+      "path": "rustfmt.toml",
+      "sizeBytes": 66,
+      "sha256": "9f8563a0ba969508f1812fd234e3f3a71a119e00526f7622a9997c8f0dbe17b3"
+    },
+    {
+      "path": "schemas/boundaries.schema.json",
+      "sizeBytes": 2155,
+      "sha256": "5aa5717072f930cace438bb7bdb4d98ab1bc460167b7e24aeac6882622f8c920"
+    },
+    {
+      "path": "schemas/i2n-artifact-v1.schema.json",
+      "sizeBytes": 1821,
+      "sha256": "779aeef40f98aca30a7bd990fc1c37a492647d91296139012a574ba4d89ea300"
+    },
+    {
+      "path": "schemas/nir-v0.1.schema.json",
+      "sizeBytes": 1455,
+      "sha256": "f87866cf1dcf30cdfa3e7767e52ad692b68fac77f91969a2ba22b80efeb8c413"
+    },
+    {
+      "path": "schemas/work-items.schema.json",
+      "sizeBytes": 2144,
+      "sha256": "e9274c1acfee7b68e0a5b7cfc16a98b941b58a1bdbad3c60d990b02b1e6c59f0"
+    },
+    {
+      "path": "scripts/i2n.py",
+      "sizeBytes": 31211,
+      "sha256": "3d2ebe9e78deb909c86e81101fa0084a7a4061c9515b78e27557d41d53104861"
+    },
+    {
+      "path": "scripts/install_hooks.py",
+      "sizeBytes": 920,
+      "sha256": "de1322969835dabbeeea44d59454b472c47372d2f0882e3cf391c1bbcefddb9f"
+    },
+    {
+      "path": "tests/README.md",
+      "sizeBytes": 521,
+      "sha256": "0c732dff734519bc56832172204cacc97b5bc44c1101e6e8eef8156f4dbe1fae"
+    },
+    {
+      "path": "tests/compatibility/.gitkeep",
+      "sizeBytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/fixtures/.gitkeep",
+      "sizeBytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/golden/.gitkeep",
+      "sizeBytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/integration/.gitkeep",
+      "sizeBytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/python/test_repo_automation.py",
+      "sizeBytes": 3610,
+      "sha256": "8e7e83ab92e48862b4647b36ef0e58da6db86b8fc3f185f7cadce5a1fc182e7a"
+    },
+    {
+      "path": "tests/security/.gitkeep",
+      "sizeBytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/unit/.gitkeep",
+      "sizeBytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

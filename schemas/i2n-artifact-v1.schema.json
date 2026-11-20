@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "I2N Artifact Manifest v1 (draft)",
+  "type": "object",
+  "required": [
+    "format",
+    "formatVersion",
+    "application",
+    "source",
+    "target",
+    "execution",
+    "payloads"
+  ],
+  "properties": {
+    "format": {
+      "const": "i2n"
+    },
+    "formatVersion": {
+      "const": 1
+    },
+    "application": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "reference",
+        "digest"
+      ],
+      "properties": {
+        "reference": {
+          "type": "string"
+        },
+        "digest": {
+          "type": "string"
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": [
+        "os",
+        "architecture",
+        "backend"
+      ],
+      "properties": {
+        "os": {
+          "enum": [
+            "linux",
+            "macos",
+            "windows"
+          ]
+        },
+        "architecture": {
+          "enum": [
+            "x86_64",
+            "aarch64"
+          ]
+        },
+        "backend": {
+          "type": "string"
+        }
+      }
+    },
+    "execution": {
+      "type": "object"
+    },
+    "payloads": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "digest",
+          "size"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

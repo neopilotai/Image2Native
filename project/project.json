@@ -1,0 +1,17 @@
+{
+  "name": "Image2Native",
+  "slug": "image2native",
+  "version": "0.1.0",
+  "status": "foundation-scaffold",
+  "description": "OCI image-to-application compiler and packaging system for Linux, macOS and Windows.",
+  "cli": "image2native",
+  "workspace": "Cargo",
+  "automation": "Python standard library",
+  "license": "undecided",
+  "remote_repository": null,
+  "product_modes": [
+    "oci-image-packaging",
+    "source-to-native-compilation"
+  ],
+  "core_boundary": "OCI ingestion and compiler IR are platform-independent; execution is delegated to platform backends."
+}

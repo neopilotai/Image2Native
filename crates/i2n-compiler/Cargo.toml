@@ -1,0 +1,17 @@
+[package]
+name = "i2n-compiler"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+i2n-model = { path = "../i2n-model" }
+i2n-diagnostics = { path = "../i2n-diagnostics" }
+i2n-oci = { path = "../i2n-oci" }
+i2n-layer = { path = "../i2n-layer" }
+i2n-rootfs = { path = "../i2n-rootfs" }
+i2n-inspector = { path = "../i2n-inspector" }
+i2n-ir = { path = "../i2n-ir" }
+i2n-analyzer = { path = "../i2n-analyzer" }
+i2n-artifact = { path = "../i2n-artifact" }

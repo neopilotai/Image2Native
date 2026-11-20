@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Image2Native Work Items",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "project",
+    "statuses",
+    "items"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "project": {
+      "const": "Image2Native"
+    },
+    "statuses": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "todo",
+          "in_progress",
+          "blocked",
+          "done"
+        ]
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "phase",
+          "priority",
+          "status",
+          "owner",
+          "scope",
+          "boundary",
+          "depends_on",
+          "acceptance_criteria",
+          "evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^I2N-[0-9]{4}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 5
+          },
+          "phase": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "priority": {
+            "enum": [
+              "P0",
+              "P1",
+              "P2",
+              "P3"
+            ]
+          },
+          "status": {
+            "enum": [
+              "todo",
+              "in_progress",
+              "blocked",
+              "done"
+            ]
+          },
+          "owner": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "boundary": {
+            "type": "string"
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "acceptance_criteria": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

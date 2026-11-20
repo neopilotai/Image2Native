@@ -1,0 +1,155 @@
+```mermaid
+graph TD
+    %% Domain (leaf - no dependencies)
+    subgraph Domain["domain"]
+        i2n_model[i2n-model]
+    end
+
+    %% Foundation (may depend on domain)
+    subgraph Foundation["foundation"]
+        i2n_diagnostics[i2n-diagnostics]
+        i2n_config[i2n-config]
+        i2n_protocol[i2n-protocol]
+    end
+
+    %% Content (may depend on domain, foundation)
+    subgraph Content["content"]
+        i2n_digest[i2n-digest]
+        i2n_fetcher[i2n-fetcher]
+        i2n_cache[i2n-cache]
+    end
+
+    %% OCI (may depend on domain, foundation, content)
+    subgraph OCI["oci"]
+        i2n_oci[i2n-oci]
+        i2n_registry[i2n-registry]
+    end
+
+    %% Filesystem (may depend on domain, foundation, content)
+    subgraph Filesystem["filesystem"]
+        i2n_layer[i2n-layer]
+        i2n_unpack[i2n-unpack]
+        i2n_rootfs[i2n-rootfs]
+        i2n_filesystem[i2n-filesystem]
+    end
+
+    %% Analysis (may depend on domain, foundation, oci, filesystem)
+    subgraph Analysis["analysis"]
+        i2n_inspector[i2n-inspector]
+        i2n_analyzer[i2n-analyzer]
+    end
+
+    %% Contracts (may depend on domain, foundation)
+    subgraph Contracts["contracts"]
+        i2n_ir[i2n-ir]
+    end
+
+    %% Compiler (may depend on domain, foundation, oci, content, filesystem, analysis, contracts, artifact)
+    subgraph Compiler["compiler"]
+        i2n_compiler[i2n-compiler]
+    end
+
+    %% Artifact (may depend on domain, foundation, contracts, content)
+    subgraph Artifact["artifact"]
+        i2n_artifact[i2n-artifact]
+        i2n_archive[i2n-archive]
+    end
+
+    %% Trust (may depend on domain, foundation, contracts)
+    subgraph Trust["trust"]
+        i2n_sbom[i2n-sbom]
+        i2n_signing[i2n-signing]
+        i2n_provenance[i2n-provenance]
+    end
+
+    %% Platform Contract (may depend on domain, foundation)
+    subgraph PlatformContract["platform-contract"]
+        i2n_platform[i2n-platform]
+    end
+
+    %% Runtime (may depend on domain, foundation, platform-contract, artifact)
+    subgraph Runtime["runtime"]
+        i2n_runtime[i2n-runtime]
+        i2n_supervisor[i2n-supervisor]
+        i2n_network[i2n-network]
+        i2n_storage[i2n-storage]
+    end
+
+    %% Security (may depend on domain, foundation, trust)
+    subgraph Security["security"]
+        i2n_security[i2n-security]
+    end
+
+    %% Platform Implementations (may depend on domain, foundation, platform-contract, runtime)
+    subgraph PlatformImpl["platform-implementations"]
+        i2n_platform_linux[i2n-platform-linux]
+        i2n_platform_macos[i2n-platform-macos]
+        i2n_platform_windows[i2n-platform-windows]
+    end
+
+    %% Applications (may depend on all groups except app)
+    subgraph Applications["applications"]
+        image2native_cli[image2native-cli]
+        image2native_launcher[image2native-launcher]
+        image2native_daemon[image2native-daemon]
+    end
+
+    %% Actual dependency edges (from Cargo.toml analysis)
+    i2n_ir --> i2n_model
+    i2n_platform_linux --> i2n_diagnostics
+    i2n_platform_linux --> i2n_model
+    i2n_platform_linux --> i2n_platform
+    i2n_platform_macos --> i2n_diagnostics
+    i2n_platform_macos --> i2n_model
+    i2n_platform_macos --> i2n_platform
+    i2n_platform_windows --> i2n_diagnostics
+    i2n_platform_windows --> i2n_model
+    i2n_platform_windows --> i2n_platform
+    i2n_security --> i2n_diagnostics
+    i2n_security --> i2n_model
+    i2n_security --> i2n_provenance
+    i2n_security --> i2n_sbom
+    i2n_security --> i2n_signing
+    image2native_cli --> i2n_diagnostics
+    image2native_cli --> i2n_model
+
+    %% Styling
+    classDef leaf fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    classDef foundation fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef content fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef oci fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef filesystem fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef analysis fill:#e0f2f1,stroke:#004d40,stroke-width:2px
+    classDef contracts fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    classDef compiler fill:#e8eaf6,stroke:#1a237e,stroke-width:2px
+    classDef artifact fill:#fff8e1,stroke:#f57f17,stroke-width:2px
+    classDef trust fill:#faf5ff,stroke:#6a1b9a,stroke-width:2px
+    classDef platformContract fill:#efebe9,stroke:#3e2723,stroke-width:2px
+    classDef runtime fill:#e3f2fd,stroke:#0d47a1,stroke-width:2px
+    classDef security fill:#ffebee,stroke:#b71c1c,stroke-width:2px
+    classDef platformImpl fill:#e0f7fa,stroke:#006064,stroke-width:2px
+    classDef app fill:#f5f5f5,stroke:#424242,stroke-width:3px
+
+    class i2n_model leaf
+    class i2n_diagnostics,i2n_config,i2n_protocol foundation
+    class i2n_digest,i2n_fetcher,i2n_cache content
+    class i2n_oci,i2n_registry oci
+    class i2n_layer,i2n_unpack,i2n_rootfs,i2n_filesystem filesystem
+    class i2n_inspector,i2n_analyzer analysis
+    class i2n_ir contracts
+    class i2n_compiler compiler
+    class i2n_artifact,i2n_archive artifact
+    class i2n_sbom,i2n_signing,i2n_provenance trust
+    class i2n_platform platformContract
+    class i2n_runtime,i2n_supervisor,i2n_network,i2n_storage runtime
+    class i2n_security security
+    class i2n_platform_linux,i2n_platform_macos,i2n_platform_windows platformImpl
+    class image2native_cli,image2native_launcher,image2native_daemon app
+```
+
+**Note:** This graph shows actual internal dependency edges from Cargo.toml manifests. Most crates currently have no dependencies (0 edges total between crates). The graph will evolve as implementation progresses.
+
+**Legend:**
+- **Bold edges (3px):** Application crates (composition roots)
+- **Colored boxes:** Group classification
+- **Arrows:** Dependency direction (A → B means A depends on B)

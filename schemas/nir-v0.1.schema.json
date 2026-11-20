@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Native Image Representation v0.1 (draft)",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "identity",
+    "sourcePlatform",
+    "requestedTarget",
+    "process"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "0.1"
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "sourceReference",
+        "manifestDigest"
+      ],
+      "properties": {
+        "sourceReference": {
+          "type": "string"
+        },
+        "manifestDigest": {
+          "type": "string",
+          "pattern": "^[a-z0-9_+.-]+:[a-fA-F0-9]+$"
+        }
+      }
+    },
+    "sourcePlatform": {
+      "type": "string"
+    },
+    "requestedTarget": {
+      "type": "string",
+      "pattern": "^(linux|macos|windows)-(x86_64|aarch64)$"
+    },
+    "process": {
+      "type": "object",
+      "required": [
+        "entrypoint",
+        "arguments"
+      ],
+      "properties": {
+        "entrypoint": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "workingDirectory": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "user": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+name: Bug report
+description: Report a reproducible Image2Native defect
+title: "[bug]: "
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Image2Native version / commit
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Host and target environment
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true

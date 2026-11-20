@@ -1,0 +1,10 @@
+[package]
+name = "image2native-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+i2n-model = { path = "../../crates/i2n-model" }
+i2n-diagnostics = { path = "../../crates/i2n-diagnostics" }

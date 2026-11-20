@@ -1,58 +1,74 @@
-# Rust Starter — Production Engineering Template
+# Image2Native
 
-A reusable Rust project scaffold with pinned toolchain configuration, quality gates,
-safe developer-machine diagnostics, build caching, GitHub Actions CI/CD, security checks,
-and a Dev Container.
+**OCI image-to-application compiler and packaging system for Linux, macOS and Windows.**
 
-> **Safety:** disk scripts audit first. Destructive cleanup requires explicit flags and
-> confirmation. No script deletes operating-system files or arbitrary paths.
+> Convert OCI images into verifiable, distributable application bundles with platform-native launchers and explicit execution backends.
+
+**Repository status:** Phase 0/1 scaffold. This repository contains architecture contracts, workspace/package boundaries, baseline inventory automation and TODO tracking. The image compiler and platform runtime are not implemented yet.
+
+## Important product boundary
+
+A Linux OCI image is not automatically a native Mach-O or PE program. Linux images on macOS and Windows require a Linux guest/compatibility backend (planned: Apple Virtualization.framework and WSL2). The host `.app`/`.exe` is a native launcher; the Linux workload remains a Linux process in its guest. Genuine host-native machine code belongs to the separate source-compilation path.
 
 ## Quick start
 
+Requirements: Python 3.11+ for repository automation; Rust stable with `rustfmt` and `clippy` for Rust build/test commands.
+
 ```bash
-# 1. Inspect your machine without changing it
-bash scripts/disk-audit.sh
-bash scripts/doctor.sh
+# Inspect current project status
+python3 scripts/i2n.py status
 
-# 2. Install/check project prerequisites and Rust components
-bash scripts/bootstrap.sh
+# Regenerate inventory, TODO and reports
+python3 scripts/i2n.py all --write
 
-# 3. Run all local quality gates
-make check
+# Run repository checks (Rust checks run when Cargo is installed)
+python3 scripts/i2n.py validate
+
+# Rust checks
+cargo fmt --all -- --check
+cargo test --workspace
+cargo clippy --workspace --all-targets -- -D warnings
 ```
 
-If `rustup` is not installed, install Rust using the official rustup instructions first.
-The scaffold targets Rust `1.92.0` by default; change `rust-toolchain.toml` and the
-`RUST_TOOLCHAIN` repository variable together when intentionally upgrading.
+Or use `make status`, `make inventory`, `make todo`, `make baseline-check`, and `make check`. Initialize a local Git repository with `git init -b main`; the archive intentionally excludes `.git` metadata.
 
-## Included
+## Automation as the source of truth
 
-- `rust-toolchain.toml`: pinned toolchain, `rustfmt`, `clippy`
-- `.cargo/config.toml`: reproducible build defaults and useful aliases
-- `scripts/`: diagnostics, disk audit, safe cleanup, bootstrap, checks, build benchmark
-- `.github/actions/`: reusable composite actions
-- `.github/workflows/`: CI, security, and release workflows
-- `.devcontainer/`: containerized development environment
-- `docs/`: architecture, cache, CI, security, and maintenance notes
-- `Makefile`: standard developer commands
+- `project/work-items.json`: structured checklist/TODO source of truth.
+- `project/boundaries.json`: crate ownership and dependency boundary inventory.
+- `project/baseline.json`: initial repository contract and structural baseline.
+- `reports/`: generated, reviewable Markdown/JSON inventories.
+- `TODO.md`: generated developer-facing task list; edit `project/work-items.json`, not this file.
 
-## First-use checklist
+Run `python3 scripts/i2n.py all --write` after changing the structured project data.
 
-- [ ] Review `Cargo.toml`, package name, license, and repository URLs.
-- [ ] Run `bash scripts/doctor.sh` and `bash scripts/disk-audit.sh`.
-- [ ] Run `bash scripts/bootstrap.sh`.
-- [ ] Run `make check`.
-- [ ] Configure repository Actions permissions and branch protection.
-- [ ] Pin third-party GitHub Actions to reviewed full commit SHAs before production use.
-- [ ] Configure cloud credentials only for trusted branches/environments.
-- [ ] For S3 caching, configure bucket, region, IAM permissions, and GitHub OIDC separately.
-- [ ] Review `docs/SECURITY.md` and `docs/CACHE.md`.
+## Documentation
 
-## Important notes
+- [White Paper](WHITEPAPER.md)
+- [Engineering Blueprint](BLUEPRINT.md)
+- [Documentation Index](docs/index.md)
+- [Product Requirements](docs/product/PRODUCT_REQUIREMENTS.md)
+- [System Architecture](docs/architecture/SYSTEM_ARCHITECTURE.md)
+- [Compiler Pipeline](docs/architecture/COMPILER_PIPELINE.md)
+- [NIR Specification](docs/architecture/NIR_SPEC.md)
+- [Backend Contract](docs/architecture/BACKEND_CONTRACT.md)
+- [I2N Artifact Format](docs/architecture/ARTIFACT_FORMAT.md)
+- [Platform Support](docs/platforms/PLATFORM_SUPPORT.md)
+- [Security Model](docs/security/SECURITY_MODEL.md) · [Threat Model](docs/security/THREAT_MODEL.md)
+- [CLI Specification](docs/developer/CLI_SPEC.md) · [Repository Layout](docs/developer/REPOSITORY_LAYOUT.md)
+- [Implementation Workflow](docs/project/WORKFLOW.md) · [Boundary Inventory](docs/project/BOUNDARIES.md) · [Baseline](docs/project/BASELINE.md)
+- [Roadmap](docs/roadmap/ROADMAP.md) · [ADRs](docs/adr/)
 
-- The sample crate is intentionally small and is meant to be replaced by your application.
-- `sccache` remote caching is optional. Local builds work without cloud credentials.
-- `cargo audit` and `cargo deny` are installed as optional developer tools; CI handles them
-  in the security workflow.
-- Release publication is intentionally not automatic. Add registry credentials and a
-  protected GitHub Environment only after reviewing the release process.
+## First vertical slice
+
+OCI resolve → digest verify → layer decode → RootFS reconstruction → NIR → compatibility report → Linux OCI runtime bundle → I2N artifact → launch.
+
+## Scope boundaries
+
+In scope: OCI ingestion, content verification, filesystem reconstruction, compatibility analysis, Linux execution, macOS/Windows Linux-guest packaging, signed artifacts, SBOM/provenance and optional source compilation.
+
+Out of first release: generic binary translation, kernel emulation, guaranteed support for all container images, Docker Desktop parity, automatic privileged execution, full Compose support, Kubernetes orchestration and GUI-first delivery.
+
+## License
+
+License selection is an explicit pre-release task. Do not redistribute this scaffold as a licensed product until `LICENSE` and third-party notice policy are approved.
