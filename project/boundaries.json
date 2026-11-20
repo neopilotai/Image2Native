@@ -1,0 +1,634 @@
+{
+  "schemaVersion": 1,
+  "project": "Image2Native",
+  "rules": [
+    "Core crates do not depend on concrete platform implementation crates.",
+    "Platform-specific native APIs remain inside platform/<os> and i2n-platform-<os>.",
+    "Application crates are composition roots and are never dependencies of core crates.",
+    "Only explicitly allowed dependency groups may be referenced by a workspace crate.",
+    "Local path dependencies must resolve to declared workspace members."
+  ],
+  "entries": [
+    {
+      "package": "i2n-model",
+      "path": "crates/i2n-model",
+      "kind": "library",
+      "group": "domain",
+      "owner": "domain",
+      "responsibility": "Owns stable IDs, platform types, digests, image references and shared domain values.",
+      "allowed_dependency_groups": [],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-diagnostics",
+      "path": "crates/i2n-diagnostics",
+      "kind": "library",
+      "group": "foundation",
+      "owner": "foundation",
+      "responsibility": "Owns structured diagnostics, stage identifiers and safe error metadata.",
+      "allowed_dependency_groups": [],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-config",
+      "path": "crates/i2n-config",
+      "kind": "library",
+      "group": "foundation",
+      "owner": "foundation",
+      "responsibility": "Owns validated compiler and runtime configuration.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-protocol",
+      "path": "crates/i2n-protocol",
+      "kind": "library",
+      "group": "foundation",
+      "owner": "foundation",
+      "responsibility": "Owns versioned host/guest and daemon IPC message contracts.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-digest",
+      "path": "crates/i2n-digest",
+      "kind": "library",
+      "group": "content",
+      "owner": "content",
+      "responsibility": "Owns content digest parsing and verification primitives.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-oci",
+      "path": "crates/i2n-oci",
+      "kind": "library",
+      "group": "oci",
+      "owner": "oci",
+      "responsibility": "Owns OCI image/index/manifest/config models and parsing.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-registry",
+      "path": "crates/i2n-registry",
+      "kind": "library",
+      "group": "oci",
+      "owner": "oci",
+      "responsibility": "Owns OCI Distribution API, registry auth and manifest resolution.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "content"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-fetcher",
+      "path": "crates/i2n-fetcher",
+      "kind": "library",
+      "group": "content",
+      "owner": "content",
+      "responsibility": "Owns bounded blob transfer, retries and cancellation.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-cache",
+      "path": "crates/i2n-cache",
+      "kind": "library",
+      "group": "content",
+      "owner": "content",
+      "responsibility": "Owns verified content-addressed cache storage and pruning.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "content"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-layer",
+      "path": "crates/i2n-layer",
+      "kind": "library",
+      "group": "filesystem",
+      "owner": "filesystem",
+      "responsibility": "Owns layer decoding and changeset/whiteout semantics.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "content"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-unpack",
+      "path": "crates/i2n-unpack",
+      "kind": "library",
+      "group": "filesystem",
+      "owner": "filesystem",
+      "responsibility": "Owns safe archive and layer unpacking policies.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "content"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-rootfs",
+      "path": "crates/i2n-rootfs",
+      "kind": "library",
+      "group": "filesystem",
+      "owner": "filesystem",
+      "responsibility": "Owns logical root filesystem reconstruction.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "filesystem"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-filesystem",
+      "path": "crates/i2n-filesystem",
+      "kind": "library",
+      "group": "filesystem",
+      "owner": "filesystem",
+      "responsibility": "Owns filesystem abstractions and metadata normalization.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-inspector",
+      "path": "crates/i2n-inspector",
+      "kind": "library",
+      "group": "analysis",
+      "owner": "analysis",
+      "responsibility": "Owns static image/process/dependency inspection.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "oci",
+        "filesystem"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-ir",
+      "path": "crates/i2n-ir",
+      "kind": "library",
+      "group": "contracts",
+      "owner": "contracts",
+      "responsibility": "Owns the versioned Native Image Representation (NIR).",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-analyzer",
+      "path": "crates/i2n-analyzer",
+      "kind": "library",
+      "group": "analysis",
+      "owner": "analysis",
+      "responsibility": "Owns compatibility, policy and target capability analysis.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "contracts",
+        "filesystem"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-compiler",
+      "path": "crates/i2n-compiler",
+      "kind": "library",
+      "group": "compiler",
+      "owner": "compiler",
+      "responsibility": "Owns compile graph orchestration, stage contracts and execution planning.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "oci",
+        "content",
+        "filesystem",
+        "analysis",
+        "contracts",
+        "artifact"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-artifact",
+      "path": "crates/i2n-artifact",
+      "kind": "library",
+      "group": "artifact",
+      "owner": "artifact",
+      "responsibility": "Owns I2N bundle manifest, payload graph and reader/writer.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "contracts",
+        "content"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-archive",
+      "path": "crates/i2n-archive",
+      "kind": "library",
+      "group": "artifact",
+      "owner": "artifact",
+      "responsibility": "Owns deterministic artifact archive and extraction.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "content"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-sbom",
+      "path": "crates/i2n-sbom",
+      "kind": "library",
+      "group": "trust",
+      "owner": "trust",
+      "responsibility": "Owns SPDX SBOM generation and validation.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "contracts"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-signing",
+      "path": "crates/i2n-signing",
+      "kind": "library",
+      "group": "trust",
+      "owner": "trust",
+      "responsibility": "Owns artifact signature and verification adapters.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "content"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-provenance",
+      "path": "crates/i2n-provenance",
+      "kind": "library",
+      "group": "trust",
+      "owner": "trust",
+      "responsibility": "Owns source/build provenance and attestations.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "content"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-platform",
+      "path": "crates/i2n-platform",
+      "kind": "library",
+      "group": "platform-contract",
+      "owner": "platform-contract",
+      "responsibility": "Owns platform backend traits and capability contracts.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-runtime",
+      "path": "crates/i2n-runtime",
+      "kind": "library",
+      "group": "runtime",
+      "owner": "runtime",
+      "responsibility": "Owns application lifecycle semantics and runtime plans.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "platform-contract",
+        "artifact"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-supervisor",
+      "path": "crates/i2n-supervisor",
+      "kind": "library",
+      "group": "runtime",
+      "owner": "runtime",
+      "responsibility": "Owns process/VM supervision, events and instance state.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "runtime"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-network",
+      "path": "crates/i2n-network",
+      "kind": "library",
+      "group": "runtime",
+      "owner": "runtime",
+      "responsibility": "Owns host/guest networking policy and port mapping.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "platform-contract"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-storage",
+      "path": "crates/i2n-storage",
+      "kind": "library",
+      "group": "runtime",
+      "owner": "runtime",
+      "responsibility": "Owns application state, volumes and writable overlays.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "platform-contract"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-security",
+      "path": "crates/i2n-security",
+      "kind": "library",
+      "group": "security",
+      "owner": "security",
+      "responsibility": "Owns policy evaluation and security boundary helpers.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "trust"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-platform-linux",
+      "path": "crates/i2n-platform-linux",
+      "kind": "library",
+      "group": "platform-linux",
+      "owner": "platform-linux",
+      "responsibility": "Owns Linux native runtime adapter and Linux-specific integration.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "platform-contract",
+        "runtime"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-platform-macos",
+      "path": "crates/i2n-platform-macos",
+      "kind": "library",
+      "group": "platform-macos",
+      "owner": "platform-macos",
+      "responsibility": "Owns Apple Virtualization.framework adapter and native bridge.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "platform-contract",
+        "runtime"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "i2n-platform-windows",
+      "path": "crates/i2n-platform-windows",
+      "kind": "library",
+      "group": "platform-windows",
+      "owner": "platform-windows",
+      "responsibility": "Owns WSL2/HCS adapter and Windows native bridge.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "platform-contract",
+        "runtime"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "image2native-cli",
+      "path": "apps/image2native-cli",
+      "kind": "application",
+      "group": "app",
+      "owner": "application",
+      "responsibility": "Command-line interface and user-facing orchestration.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "foundation",
+        "foundation",
+        "content",
+        "oci",
+        "oci",
+        "content",
+        "content",
+        "filesystem",
+        "filesystem",
+        "filesystem",
+        "filesystem",
+        "analysis",
+        "contracts",
+        "analysis",
+        "compiler",
+        "artifact",
+        "artifact",
+        "trust",
+        "trust",
+        "trust",
+        "platform-contract",
+        "runtime",
+        "runtime",
+        "runtime",
+        "runtime",
+        "security",
+        "platform-linux",
+        "platform-macos",
+        "platform-windows"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "image2native-launcher",
+      "path": "apps/image2native-launcher",
+      "kind": "application",
+      "group": "app",
+      "owner": "application",
+      "responsibility": "Native per-platform application launcher.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "foundation",
+        "foundation",
+        "content",
+        "oci",
+        "oci",
+        "content",
+        "content",
+        "filesystem",
+        "filesystem",
+        "filesystem",
+        "filesystem",
+        "analysis",
+        "contracts",
+        "analysis",
+        "compiler",
+        "artifact",
+        "artifact",
+        "trust",
+        "trust",
+        "trust",
+        "platform-contract",
+        "runtime",
+        "runtime",
+        "runtime",
+        "runtime",
+        "security",
+        "platform-linux",
+        "platform-macos",
+        "platform-windows"
+      ],
+      "allowed_external_dependencies": []
+    },
+    {
+      "package": "image2native-daemon",
+      "path": "apps/image2native-daemon",
+      "kind": "application",
+      "group": "app",
+      "owner": "application",
+      "responsibility": "Optional local service; never required by the core CLI.",
+      "allowed_dependency_groups": [
+        "domain",
+        "foundation",
+        "foundation",
+        "foundation",
+        "content",
+        "oci",
+        "oci",
+        "content",
+        "content",
+        "filesystem",
+        "filesystem",
+        "filesystem",
+        "filesystem",
+        "analysis",
+        "contracts",
+        "analysis",
+        "compiler",
+        "artifact",
+        "artifact",
+        "trust",
+        "trust",
+        "trust",
+        "platform-contract",
+        "runtime",
+        "runtime",
+        "runtime",
+        "runtime",
+        "security",
+        "platform-linux",
+        "platform-macos",
+        "platform-windows"
+      ],
+      "allowed_external_dependencies": []
+    }
+  ],
+  "components": [
+    {
+      "id": "platform-linux-bridge",
+      "path": "platform/linux",
+      "kind": "native-bridge",
+      "owner": "platform-linux",
+      "responsibility": "Linux host syscalls and OCI runtime integration; must remain behind the platform backend contract."
+    },
+    {
+      "id": "platform-macos-bridge",
+      "path": "platform/macos",
+      "kind": "native-bridge",
+      "owner": "platform-macos",
+      "responsibility": "Apple Virtualization.framework bridge and entitlement-sensitive code."
+    },
+    {
+      "id": "platform-windows-bridge",
+      "path": "platform/windows",
+      "kind": "native-bridge",
+      "owner": "platform-windows",
+      "responsibility": "Windows WSL2, Win32 and HCS bridge code."
+    },
+    {
+      "id": "linux-guest-runtime",
+      "path": "guest",
+      "kind": "guest-runtime",
+      "owner": "guest-runtime",
+      "responsibility": "Pinned Linux kernel, minimal init, guest agent and host-guest protocol implementation."
+    },
+    {
+      "id": "project-governance",
+      "path": "project",
+      "kind": "governance-data",
+      "owner": "foundation",
+      "responsibility": "Machine-readable tasks, ownership boundaries, decisions and baseline source of truth."
+    },
+    {
+      "id": "project-automation",
+      "path": "scripts",
+      "kind": "automation",
+      "owner": "foundation",
+      "responsibility": "Deterministic repository checks, TODO rendering, inventory and baseline enforcement."
+    },
+    {
+      "id": "contract-schemas",
+      "path": "schemas",
+      "kind": "schemas",
+      "owner": "contracts",
+      "responsibility": "Versioned JSON schemas for NIR, I2N artifacts and project governance records."
+    },
+    {
+      "id": "quality-harness",
+      "path": "tests",
+      "kind": "test-harness",
+      "owner": "quality",
+      "responsibility": "Unit, integration, compatibility, security, golden and fixture test suites."
+    },
+    {
+      "id": "documentation",
+      "path": "docs",
+      "kind": "documentation",
+      "owner": "docs",
+      "responsibility": "Product, architecture, platform, security and implementation documentation."
+    }
+  ]
+}

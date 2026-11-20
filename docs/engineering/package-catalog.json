@@ -1,0 +1,962 @@
+{
+  "schemaVersion": 1,
+  "generated": "2026-11-20T00:00:00Z",
+  "gitCommit": "f42f10a",
+  "gitBranch": "main",
+  "workspace": {
+    "root": "/workspaces/Image2Native",
+    "members": 34,
+    "resolver": "3",
+    "rustVersion": "1.85",
+    "edition": "2024"
+  },
+  "packages": [
+    {
+      "name": "i2n-model",
+      "path": "crates/i2n-model",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "domain",
+      "owner": "domain",
+      "purpose": "Owns stable IDs, platform types, digests, image references and shared domain values.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_model",
+          "srcPath": "crates/i2n-model/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [
+        "OperatingSystem",
+        "Architecture",
+        "TargetPlatform",
+        "Digest",
+        "ParseTargetError"
+      ],
+      "features": [],
+      "implementationStatus": "PARTIAL",
+      "tests": true,
+      "evidence": "TargetPlatform and Digest parsing with tests",
+      "allowedDependencyGroups": []
+    },
+    {
+      "name": "i2n-diagnostics",
+      "path": "crates/i2n-diagnostics",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "foundation",
+      "owner": "foundation",
+      "purpose": "Owns structured diagnostics, stage identifiers and safe error metadata.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_diagnostics",
+          "srcPath": "crates/i2n-diagnostics/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [
+        "Stage",
+        "Diagnostic"
+      ],
+      "features": [],
+      "implementationStatus": "PARTIAL",
+      "tests": false,
+      "evidence": "Stage enum and Diagnostic struct implemented",
+      "allowedDependencyGroups": []
+    },
+    {
+      "name": "i2n-config",
+      "path": "crates/i2n-config",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "foundation",
+      "owner": "foundation",
+      "purpose": "Owns validated compiler and runtime configuration.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_config",
+          "srcPath": "crates/i2n-config/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation"]
+    },
+    {
+      "name": "i2n-protocol",
+      "path": "crates/i2n-protocol",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "foundation",
+      "owner": "foundation",
+      "purpose": "Owns versioned host/guest and daemon IPC message contracts.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_protocol",
+          "srcPath": "crates/i2n-protocol/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation"]
+    },
+    {
+      "name": "i2n-digest",
+      "path": "crates/i2n-digest",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "content",
+      "owner": "content",
+      "purpose": "Owns content digest parsing and verification primitives.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_digest",
+          "srcPath": "crates/i2n-digest/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation"]
+    },
+    {
+      "name": "i2n-oci",
+      "path": "crates/i2n-oci",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "oci",
+      "owner": "oci",
+      "purpose": "Owns OCI image/index/manifest/config models and parsing.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_oci",
+          "srcPath": "crates/i2n-oci/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation"]
+    },
+    {
+      "name": "i2n-registry",
+      "path": "crates/i2n-registry",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "oci",
+      "owner": "oci",
+      "purpose": "Owns OCI Distribution API, registry auth and manifest resolution.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_registry",
+          "srcPath": "crates/i2n-registry/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "content"]
+    },
+    {
+      "name": "i2n-fetcher",
+      "path": "crates/i2n-fetcher",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "content",
+      "owner": "content",
+      "purpose": "Owns bounded blob transfer, retries and cancellation.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_fetcher",
+          "srcPath": "crates/i2n-fetcher/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation"]
+    },
+    {
+      "name": "i2n-cache",
+      "path": "crates/i2n-cache",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "content",
+      "owner": "content",
+      "purpose": "Owns verified content-addressed cache storage and pruning.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_cache",
+          "srcPath": "crates/i2n-cache/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "content"]
+    },
+    {
+      "name": "i2n-layer",
+      "path": "crates/i2n-layer",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "filesystem",
+      "owner": "filesystem",
+      "purpose": "Owns layer decoding and changeset/whiteout semantics.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_layer",
+          "srcPath": "crates/i2n-layer/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "content"]
+    },
+    {
+      "name": "i2n-unpack",
+      "path": "crates/i2n-unpack",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "filesystem",
+      "owner": "filesystem",
+      "purpose": "Owns safe archive and layer unpacking policies.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_unpack",
+          "srcPath": "crates/i2n-unpack/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "content"]
+    },
+    {
+      "name": "i2n-rootfs",
+      "path": "crates/i2n-rootfs",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "filesystem",
+      "owner": "filesystem",
+      "purpose": "Owns logical root filesystem reconstruction.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_rootfs",
+          "srcPath": "crates/i2n-rootfs/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "filesystem"]
+    },
+    {
+      "name": "i2n-filesystem",
+      "path": "crates/i2n-filesystem",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "filesystem",
+      "owner": "filesystem",
+      "purpose": "Owns filesystem abstractions and metadata normalization.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_filesystem",
+          "srcPath": "crates/i2n-filesystem/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation"]
+    },
+    {
+      "name": "i2n-inspector",
+      "path": "crates/i2n-inspector",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "analysis",
+      "owner": "analysis",
+      "purpose": "Owns static image/process/dependency inspection.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_inspector",
+          "srcPath": "crates/i2n-inspector/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "oci", "filesystem"]
+    },
+    {
+      "name": "i2n-ir",
+      "path": "crates/i2n-ir",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "contracts",
+      "owner": "contracts",
+      "purpose": "Owns the versioned Native Image Representation (NIR).",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_ir",
+          "srcPath": "crates/i2n-ir/src/lib.rs"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "i2n-model",
+          "kind": "local"
+        }
+      ],
+      "publicModules": [
+        "ImageIdentity",
+        "ProcessSpec",
+        "NativeImage"
+      ],
+      "features": [],
+      "implementationStatus": "PARTIAL",
+      "tests": false,
+      "evidence": "Draft NIR types exist; full NIR v0.1 pending",
+      "allowedDependencyGroups": ["domain", "foundation"]
+    },
+    {
+      "name": "i2n-analyzer",
+      "path": "crates/i2n-analyzer",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "analysis",
+      "owner": "analysis",
+      "purpose": "Owns compatibility, policy and target capability analysis.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_analyzer",
+          "srcPath": "crates/i2n-analyzer/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "contracts", "filesystem"]
+    },
+    {
+      "name": "i2n-compiler",
+      "path": "crates/i2n-compiler",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "compiler",
+      "owner": "compiler",
+      "purpose": "Owns compile graph orchestration, stage contracts and execution planning.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_compiler",
+          "srcPath": "crates/i2n-compiler/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "oci", "content", "filesystem", "analysis", "contracts", "artifact"]
+    },
+    {
+      "name": "i2n-artifact",
+      "path": "crates/i2n-artifact",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "artifact",
+      "owner": "artifact",
+      "purpose": "Owns I2N bundle manifest, payload graph and reader/writer.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_artifact",
+          "srcPath": "crates/i2n-artifact/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only; schema exists at schemas/i2n-artifact-v1.schema.json",
+      "allowedDependencyGroups": ["domain", "foundation", "contracts", "content"]
+    },
+    {
+      "name": "i2n-archive",
+      "path": "crates/i2n-archive",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "artifact",
+      "owner": "artifact",
+      "purpose": "Owns deterministic artifact archive and extraction.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_archive",
+          "srcPath": "crates/i2n-archive/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "content"]
+    },
+    {
+      "name": "i2n-sbom",
+      "path": "crates/i2n-sbom",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "trust",
+      "owner": "trust",
+      "purpose": "Owns SPDX SBOM generation and validation.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_sbom",
+          "srcPath": "crates/i2n-sbom/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "contracts"]
+    },
+    {
+      "name": "i2n-signing",
+      "path": "crates/i2n-signing",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "trust",
+      "owner": "trust",
+      "purpose": "Owns artifact signature and verification adapters.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_signing",
+          "srcPath": "crates/i2n-signing/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "content"]
+    },
+    {
+      "name": "i2n-provenance",
+      "path": "crates/i2n-provenance",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "trust",
+      "owner": "trust",
+      "purpose": "Owns source/build provenance and attestations.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_provenance",
+          "srcPath": "crates/i2n-provenance/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "content"]
+    },
+    {
+      "name": "i2n-platform",
+      "path": "crates/i2n-platform",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "platform-contract",
+      "owner": "platform-contract",
+      "purpose": "Owns platform backend traits and capability contracts.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_platform",
+          "srcPath": "crates/i2n-platform/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [
+        "ExecutionKind",
+        "BackendCapabilities",
+        "PlatformBackend"
+      ],
+      "features": [],
+      "implementationStatus": "PARTIAL",
+      "tests": false,
+      "evidence": "Platform trait contract implemented",
+      "allowedDependencyGroups": ["domain", "foundation"]
+    },
+    {
+      "name": "i2n-runtime",
+      "path": "crates/i2n-runtime",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "runtime",
+      "owner": "runtime",
+      "purpose": "Owns application lifecycle semantics and runtime plans.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_runtime",
+          "srcPath": "crates/i2n-runtime/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "platform-contract", "artifact"]
+    },
+    {
+      "name": "i2n-supervisor",
+      "path": "crates/i2n-supervisor",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "runtime",
+      "owner": "runtime",
+      "purpose": "Owns process/VM supervision, events and instance state.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_supervisor",
+          "srcPath": "crates/i2n-supervisor/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "runtime"]
+    },
+    {
+      "name": "i2n-network",
+      "path": "crates/i2n-network",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "runtime",
+      "owner": "runtime",
+      "purpose": "Owns host/guest networking policy and port mapping.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_network",
+          "srcPath": "crates/i2n-network/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "platform-contract"]
+    },
+    {
+      "name": "i2n-storage",
+      "path": "crates/i2n-storage",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "runtime",
+      "owner": "runtime",
+      "purpose": "Owns application state, volumes and writable overlays.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_storage",
+          "srcPath": "crates/i2n-storage/src/lib.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "platform-contract"]
+    },
+    {
+      "name": "i2n-security",
+      "path": "crates/i2n-security",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "security",
+      "owner": "security",
+      "purpose": "Owns policy evaluation and security boundary helpers.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_security",
+          "srcPath": "crates/i2n-security/src/lib.rs"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "i2n-diagnostics",
+          "kind": "local"
+        },
+        {
+          "name": "i2n-model",
+          "kind": "local"
+        },
+        {
+          "name": "i2n-provenance",
+          "kind": "local"
+        },
+        {
+          "name": "i2n-sbom",
+          "kind": "local"
+        },
+        {
+          "name": "i2n-signing",
+          "kind": "local"
+        }
+      ],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "trust"]
+    },
+    {
+      "name": "i2n-platform-linux",
+      "path": "crates/i2n-platform-linux",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "platform-linux",
+      "owner": "platform-linux",
+      "purpose": "Owns Linux native runtime adapter and Linux-specific integration.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_platform_linux",
+          "srcPath": "crates/i2n-platform-linux/src/lib.rs"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "i2n-diagnostics",
+          "kind": "local"
+        },
+        {
+          "name": "i2n-model",
+          "kind": "local"
+        },
+        {
+          "name": "i2n-platform",
+          "kind": "local"
+        }
+      ],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "platform-contract", "runtime"]
+    },
+    {
+      "name": "i2n-platform-macos",
+      "path": "crates/i2n-platform-macos",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "platform-macos",
+      "owner": "platform-macos",
+      "purpose": "Owns Apple Virtualization.framework adapter and native bridge.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_platform_macos",
+          "srcPath": "crates/i2n-platform-macos/src/lib.rs"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "i2n-diagnostics",
+          "kind": "local"
+        },
+        {
+          "name": "i2n-model",
+          "kind": "local"
+        },
+        {
+          "name": "i2n-platform",
+          "kind": "local"
+        }
+      ],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "platform-contract", "runtime"]
+    },
+    {
+      "name": "i2n-platform-windows",
+      "path": "crates/i2n-platform-windows",
+      "version": "0.1.0",
+      "kind": "library",
+      "group": "platform-windows",
+      "owner": "platform-windows",
+      "purpose": "Owns WSL2/HCS adapter and Windows native bridge.",
+      "targets": [
+        {
+          "kind": "lib",
+          "name": "i2n_platform_windows",
+          "srcPath": "crates/i2n-platform-windows/src/lib.rs"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "i2n-diagnostics",
+          "kind": "local"
+        },
+        {
+          "name": "i2n-model",
+          "kind": "local"
+        },
+        {
+          "name": "i2n-platform",
+          "kind": "local"
+        }
+      ],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Status marker only",
+      "allowedDependencyGroups": ["domain", "foundation", "platform-contract", "runtime"]
+    },
+    {
+      "name": "image2native-cli",
+      "path": "apps/image2native-cli",
+      "version": "0.1.0",
+      "kind": "application",
+      "group": "app",
+      "owner": "application",
+      "purpose": "Command-line interface and user-facing orchestration.",
+      "targets": [
+        {
+          "kind": "bin",
+          "name": "image2native-cli",
+          "srcPath": "apps/image2native-cli/src/main.rs"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "i2n-diagnostics",
+          "kind": "local"
+        },
+        {
+          "name": "i2n-model",
+          "kind": "local"
+        }
+      ],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "PARTIAL",
+      "tests": false,
+      "evidence": "Basic CLI with version, targets, doctor commands",
+      "allowedDependencyGroups": ["domain", "foundation", "content", "oci", "filesystem", "analysis", "contracts", "compiler", "artifact", "trust", "platform-contract", "runtime", "security", "platform-linux", "platform-macos", "platform-windows"]
+    },
+    {
+      "name": "image2native-launcher",
+      "path": "apps/image2native-launcher",
+      "version": "0.1.0",
+      "kind": "application",
+      "group": "app",
+      "owner": "application",
+      "purpose": "Native per-platform application launcher.",
+      "targets": [
+        {
+          "kind": "bin",
+          "name": "image2native-launcher",
+          "srcPath": "apps/image2native-launcher/src/main.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Placeholder main only",
+      "allowedDependencyGroups": ["domain", "foundation", "content", "oci", "filesystem", "analysis", "contracts", "compiler", "artifact", "trust", "platform-contract", "runtime", "security", "platform-linux", "platform-macos", "platform-windows"]
+    },
+    {
+      "name": "image2native-daemon",
+      "path": "apps/image2native-daemon",
+      "version": "0.1.0",
+      "kind": "application",
+      "group": "app",
+      "owner": "application",
+      "purpose": "Optional local service; never required by the core CLI.",
+      "targets": [
+        {
+          "kind": "bin",
+          "name": "image2native-daemon",
+          "srcPath": "apps/image2native-daemon/src/main.rs"
+        }
+      ],
+      "dependencies": [],
+      "publicModules": [],
+      "features": [],
+      "implementationStatus": "SCAFFOLDED",
+      "tests": false,
+      "evidence": "Placeholder main only",
+      "allowedDependencyGroups": ["domain", "foundation", "content", "oci", "filesystem", "analysis", "contracts", "compiler", "artifact", "trust", "platform-contract", "runtime", "security", "platform-linux", "platform-macos", "platform-windows"]
+    }
+  ],
+  "repositoryComponents": [
+    {
+      "id": "platform-linux-bridge",
+      "path": "platform/linux",
+      "kind": "native-bridge",
+      "owner": "platform-linux",
+      "responsibility": "Linux host syscalls and OCI runtime integration; must remain behind the platform backend contract.",
+      "status": "PLACEHOLDER"
+    },
+    {
+      "id": "platform-macos-bridge",
+      "path": "platform/macos",
+      "kind": "native-bridge",
+      "owner": "platform-macos",
+      "responsibility": "Apple Virtualization.framework bridge and entitlement-sensitive code.",
+      "status": "PLACEHOLDER"
+    },
+    {
+      "id": "platform-windows-bridge",
+      "path": "platform/windows",
+      "kind": "native-bridge",
+      "owner": "platform-windows",
+      "responsibility": "Windows WSL2, Win32 and HCS bridge code.",
+      "status": "PLACEHOLDER"
+    },
+    {
+      "id": "linux-guest-runtime",
+      "path": "guest",
+      "kind": "guest-runtime",
+      "owner": "guest-runtime",
+      "responsibility": "Pinned Linux kernel, minimal init, guest agent and host-guest protocol implementation.",
+      "status": "PLACEHOLDER"
+    },
+    {
+      "id": "project-governance",
+      "path": "project",
+      "kind": "governance-data",
+      "owner": "foundation",
+      "responsibility": "Machine-readable tasks, ownership boundaries, decisions and baseline source of truth.",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "project-automation",
+      "path": "scripts",
+      "kind": "automation",
+      "owner": "foundation",
+      "responsibility": "Deterministic repository checks, TODO rendering, inventory and baseline enforcement.",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "contract-schemas",
+      "path": "schemas",
+      "kind": "schemas",
+      "owner": "contracts",
+      "responsibility": "Versioned JSON schemas for NIR, I2N artifacts and project governance records.",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "quality-harness",
+      "path": "tests",
+      "kind": "test-harness",
+      "owner": "quality",
+      "responsibility": "Unit, integration, compatibility, security, golden and fixture test suites.",
+      "status": "PLACEHOLDER"
+    },
+    {
+      "id": "documentation",
+      "path": "docs",
+      "kind": "documentation",
+      "owner": "docs",
+      "responsibility": "Product, architecture, platform, security and implementation documentation.",
+      "status": "IMPLEMENTED"
+    }
+  ]
+}

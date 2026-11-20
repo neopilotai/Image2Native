@@ -1,23 +1,46 @@
 # Image2Native
 
-**An OCI image-to-application compiler and packaging system for macOS, Linux, and Windows.**
+**OCI image-to-application compiler and packaging system for Linux, macOS and Windows.**
 
-> Turn container images into verified, distributable application bundles with native host launchers and explicit execution backends.
+> Convert OCI images into verifiable, distributable application bundles with platform-native launchers and explicit execution backends.
 
-**Status:** proposed architecture and documentation baseline. The software, CLI, IR and artifact format described here are not yet implemented. Examples are design targets, not claims of working functionality.
+**Repository status:** Phase 0/1 scaffold. This repository contains architecture contracts, workspace/package boundaries, baseline inventory automation and TODO tracking. The image compiler and platform runtime are not implemented yet.
 
-## Product definition
+## Important product boundary
 
-Image2Native resolves OCI images, verifies their content, reconstructs their layered filesystem and process metadata, lowers the result into a canonical Native Image Representation (NIR), analyzes host compatibility, then packages the workload with an appropriate platform launcher and execution backend.
+A Linux OCI image is not automatically a native Mach-O or PE program. Linux images on macOS and Windows require a Linux guest/compatibility backend (planned: Apple Virtualization.framework and WSL2). The host `.app`/`.exe` is a native launcher; the Linux workload remains a Linux process in its guest. Genuine host-native machine code belongs to the separate source-compilation path.
 
-## Important technical distinction
+## Quick start
 
-Image2Native is not a universal Linux-to-Mach-O/PE binary translator. A standard Linux container image contains Linux executables and expects Linux kernel behavior. General execution of Linux images on macOS and Windows therefore requires a Linux guest environment (proposed: Apple's Virtualization framework on macOS and WSL2 on Windows). The host-native `.app` or `.exe` is a launcher and lifecycle manager; the original Linux workload remains a Linux process in the guest.
+Requirements: Python 3.11+ for repository automation; Rust stable with `rustfmt` and `clippy` for Rust build/test commands.
 
-The project has two separate modes:
+```bash
+# Inspect current project status
+python3 scripts/i2n.py status
 
-1. **Image packaging:** accepts an existing OCI/Docker image and packages its application filesystem and configuration for a compatible backend.
-2. **Source compilation:** accepts source/build inputs and invokes target toolchains to produce actual target-native binaries where source code and dependencies support that target. This is not generic binary translation.
+# Regenerate inventory, TODO and reports
+python3 scripts/i2n.py all --write
+
+# Run repository checks (Rust checks run when Cargo is installed)
+python3 scripts/i2n.py validate
+
+# Rust checks
+cargo fmt --all -- --check
+cargo test --workspace
+cargo clippy --workspace --all-targets -- -D warnings
+```
+
+Or use `make status`, `make inventory`, `make todo`, `make baseline-check`, and `make check`. Initialize a local Git repository with `git init -b main`; the archive intentionally excludes `.git` metadata.
+
+## Automation as the source of truth
+
+- `project/work-items.json`: structured checklist/TODO source of truth.
+- `project/boundaries.json`: crate ownership and dependency boundary inventory.
+- `project/baseline.json`: initial repository contract and structural baseline.
+- `reports/`: generated, reviewable Markdown/JSON inventories.
+- `TODO.md`: generated developer-facing task list; edit `project/work-items.json`, not this file.
+
+Run `python3 scripts/i2n.py all --write` after changing the structured project data.
 
 ## Documentation
 
@@ -31,55 +54,21 @@ The project has two separate modes:
 - [Backend Contract](docs/architecture/BACKEND_CONTRACT.md)
 - [I2N Artifact Format](docs/architecture/ARTIFACT_FORMAT.md)
 - [Platform Support](docs/platforms/PLATFORM_SUPPORT.md)
-- [Linux](docs/platforms/LINUX.md) · [macOS](docs/platforms/MACOS.md) · [Windows](docs/platforms/WINDOWS.md)
 - [Security Model](docs/security/SECURITY_MODEL.md) · [Threat Model](docs/security/THREAT_MODEL.md)
-- [CLI](docs/developer/CLI_SPEC.md) · [Repository Layout](docs/developer/REPOSITORY_LAYOUT.md) · [Build and Test](docs/developer/BUILD_AND_TEST.md)
-- [Release Engineering](docs/operations/RELEASE.md) · [Roadmap](docs/roadmap/ROADMAP.md)
-- [ADRs](docs/adr/) · [References](docs/references.md) · [Glossary](docs/glossary.md)
+- [CLI Specification](docs/developer/CLI_SPEC.md) · [Repository Layout](docs/developer/REPOSITORY_LAYOUT.md)
+- [Implementation Workflow](docs/project/WORKFLOW.md) · [Boundary Inventory](docs/project/BOUNDARIES.md) · [Baseline](docs/project/BASELINE.md)
+- [Roadmap](docs/roadmap/ROADMAP.md) · [ADRs](docs/adr/)
 
-## Proposed repository layout
+## First vertical slice
 
-```text
-image2native/
-├── Cargo.toml / Cargo.lock / rust-toolchain.toml
-├── README.md / WHITEPAPER.md / BLUEPRINT.md
-├── apps/
-│   ├── image2native-cli/
-│   ├── image2native-launcher/
-│   └── image2native-daemon/          # optional; never required for core CLI
-├── crates/
-│   ├── i2n-model/                    # shared domain types
-│   ├── i2n-oci/                      # OCI image/index/config parsing
-│   ├── i2n-registry/                 # OCI Distribution client
-│   ├── i2n-fetcher/                  # blob transfer and retries
-│   ├── i2n-digest/                   # digest parsing and verification
-│   ├── i2n-cache/                    # content-addressed cache
-│   ├── i2n-layer/                    # layer decode/application
-│   ├── i2n-rootfs/                   # logical filesystem model
-│   ├── i2n-inspector/                # static image inspection
-│   ├── i2n-ir/                       # NIR schema and validation
-│   ├── i2n-analyzer/                 # compatibility and policy analysis
-│   ├── i2n-compiler/                 # pipeline orchestration
-│   ├── i2n-artifact/                 # I2N bundle reader/writer
-│   ├── i2n-sbom/ / i2n-signing/ / i2n-provenance/
-│   ├── i2n-runtime/ / i2n-supervisor/
-│   ├── i2n-platform/                 # backend contracts
-│   ├── i2n-platform-linux/
-│   ├── i2n-platform-macos/
-│   ├── i2n-platform-windows/
-│   ├── i2n-security/ / i2n-diagnostics/
-│   └── i2n-network/ / i2n-storage/
-├── platform/{linux,macos,windows}/   # thin native bridges
-├── guest/{agent,init,kernel,rootfs}/
-├── schemas/ tests/ docs/ scripts/
-```
-
-## First implementation target
-
-Deliver a complete Linux vertical slice before building desktop virtualization backends: OCI resolve → verify → layer reconstruction → NIR → compatibility report → Linux runtime bundle → I2N artifact → launch. This validates the compiler core before adding host-specific VM integrations.
+OCI resolve → digest verify → layer decode → RootFS reconstruction → NIR → compatibility report → Linux OCI runtime bundle → I2N artifact → launch.
 
 ## Scope boundaries
 
-**In scope:** OCI ingestion; multi-architecture selection; rootfs reconstruction; compatibility analysis; native launchers; Linux execution; macOS and Windows Linux-guest execution; integrity/signing/SBOM; updates; optional source compilation.
+In scope: OCI ingestion, content verification, filesystem reconstruction, compatibility analysis, Linux execution, macOS/Windows Linux-guest packaging, signed artifacts, SBOM/provenance and optional source compilation.
 
-**Not in the first release:** generic binary translation; kernel emulation; guaranteed support for all images; Docker Desktop parity; automatic privileged execution; full Compose support; GUI-first product; Kubernetes orchestration.
+Out of first release: generic binary translation, kernel emulation, guaranteed support for all container images, Docker Desktop parity, automatic privileged execution, full Compose support, Kubernetes orchestration and GUI-first delivery.
+
+## License
+
+License selection is an explicit pre-release task. Do not redistribute this scaffold as a licensed product until `LICENSE` and third-party notice policy are approved.

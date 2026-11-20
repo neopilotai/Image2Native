@@ -1,0 +1,10 @@
+[package]
+name = "i2n-ir"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+i2n-model = { path = "../i2n-model" }
+i2n-diagnostics = { path = "../i2n-diagnostics" }

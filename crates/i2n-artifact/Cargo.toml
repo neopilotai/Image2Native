@@ -1,0 +1,12 @@
+[package]
+name = "i2n-artifact"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+i2n-model = { path = "../i2n-model" }
+i2n-diagnostics = { path = "../i2n-diagnostics" }
+i2n-ir = { path = "../i2n-ir" }
+i2n-digest = { path = "../i2n-digest" }

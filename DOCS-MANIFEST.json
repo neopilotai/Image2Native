@@ -1,8 +1,0 @@
-{
-  "project": "Image2Native",
-  "documentation_version": "0.1.0",
-  "created": "2026-11-20",
-  "status": "proposed-architecture-not-implementation-status",
-  "primary_documents": ["README.md", "WHITEPAPER.md", "BLUEPRINT.md"],
-  "note": "All APIs, commands, formats and support entries are proposals unless confirmed by a future implementation and test evidence."
-}

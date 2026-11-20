@@ -1,0 +1,53 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/i2n-model",
+    "crates/i2n-diagnostics",
+    "crates/i2n-config",
+    "crates/i2n-protocol",
+    "crates/i2n-digest",
+    "crates/i2n-oci",
+    "crates/i2n-registry",
+    "crates/i2n-fetcher",
+    "crates/i2n-cache",
+    "crates/i2n-layer",
+    "crates/i2n-unpack",
+    "crates/i2n-rootfs",
+    "crates/i2n-filesystem",
+    "crates/i2n-inspector",
+    "crates/i2n-ir",
+    "crates/i2n-analyzer",
+    "crates/i2n-compiler",
+    "crates/i2n-artifact",
+    "crates/i2n-archive",
+    "crates/i2n-sbom",
+    "crates/i2n-signing",
+    "crates/i2n-provenance",
+    "crates/i2n-platform",
+    "crates/i2n-runtime",
+    "crates/i2n-supervisor",
+    "crates/i2n-network",
+    "crates/i2n-storage",
+    "crates/i2n-security",
+    "crates/i2n-platform-linux",
+    "crates/i2n-platform-macos",
+    "crates/i2n-platform-windows",
+    "apps/image2native-cli",
+    "apps/image2native-launcher",
+    "apps/image2native-daemon"
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+
+[workspace.dependencies]
+i2n-model = { path = "crates/i2n-model" }
+i2n-diagnostics = { path = "crates/i2n-diagnostics" }
+
+[profile.dev]
+debug = 1
+
+[profile.test]
+debug = 1

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Image2Native Boundary Inventory",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "project",
+    "rules",
+    "entries",
+    "components"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "project": {
+      "const": "Image2Native"
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "package",
+          "path",
+          "kind",
+          "group",
+          "owner",
+          "responsibility",
+          "allowed_dependency_groups",
+          "allowed_external_dependencies"
+        ],
+        "properties": {
+          "package": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "library",
+              "application"
+            ]
+          },
+          "group": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "responsibility": {
+            "type": "string"
+          },
+          "allowed_dependency_groups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "allowed_external_dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "path",
+          "kind",
+          "owner",
+          "responsibility"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "responsibility": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
