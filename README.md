@@ -1,58 +1,85 @@
-# Rust Starter — Production Engineering Template
+# Image2Native
 
-A reusable Rust project scaffold with pinned toolchain configuration, quality gates,
-safe developer-machine diagnostics, build caching, GitHub Actions CI/CD, security checks,
-and a Dev Container.
+**An OCI image-to-application compiler and packaging system for macOS, Linux, and Windows.**
 
-> **Safety:** disk scripts audit first. Destructive cleanup requires explicit flags and
-> confirmation. No script deletes operating-system files or arbitrary paths.
+> Turn container images into verified, distributable application bundles with native host launchers and explicit execution backends.
 
-## Quick start
+**Status:** proposed architecture and documentation baseline. The software, CLI, IR and artifact format described here are not yet implemented. Examples are design targets, not claims of working functionality.
 
-```bash
-# 1. Inspect your machine without changing it
-bash scripts/disk-audit.sh
-bash scripts/doctor.sh
+## Product definition
 
-# 2. Install/check project prerequisites and Rust components
-bash scripts/bootstrap.sh
+Image2Native resolves OCI images, verifies their content, reconstructs their layered filesystem and process metadata, lowers the result into a canonical Native Image Representation (NIR), analyzes host compatibility, then packages the workload with an appropriate platform launcher and execution backend.
 
-# 3. Run all local quality gates
-make check
+## Important technical distinction
+
+Image2Native is not a universal Linux-to-Mach-O/PE binary translator. A standard Linux container image contains Linux executables and expects Linux kernel behavior. General execution of Linux images on macOS and Windows therefore requires a Linux guest environment (proposed: Apple's Virtualization framework on macOS and WSL2 on Windows). The host-native `.app` or `.exe` is a launcher and lifecycle manager; the original Linux workload remains a Linux process in the guest.
+
+The project has two separate modes:
+
+1. **Image packaging:** accepts an existing OCI/Docker image and packages its application filesystem and configuration for a compatible backend.
+2. **Source compilation:** accepts source/build inputs and invokes target toolchains to produce actual target-native binaries where source code and dependencies support that target. This is not generic binary translation.
+
+## Documentation
+
+- [White Paper](WHITEPAPER.md)
+- [Engineering Blueprint](BLUEPRINT.md)
+- [Documentation Index](docs/index.md)
+- [Product Requirements](docs/product/PRODUCT_REQUIREMENTS.md)
+- [System Architecture](docs/architecture/SYSTEM_ARCHITECTURE.md)
+- [Compiler Pipeline](docs/architecture/COMPILER_PIPELINE.md)
+- [NIR Specification](docs/architecture/NIR_SPEC.md)
+- [Backend Contract](docs/architecture/BACKEND_CONTRACT.md)
+- [I2N Artifact Format](docs/architecture/ARTIFACT_FORMAT.md)
+- [Platform Support](docs/platforms/PLATFORM_SUPPORT.md)
+- [Linux](docs/platforms/LINUX.md) · [macOS](docs/platforms/MACOS.md) · [Windows](docs/platforms/WINDOWS.md)
+- [Security Model](docs/security/SECURITY_MODEL.md) · [Threat Model](docs/security/THREAT_MODEL.md)
+- [CLI](docs/developer/CLI_SPEC.md) · [Repository Layout](docs/developer/REPOSITORY_LAYOUT.md) · [Build and Test](docs/developer/BUILD_AND_TEST.md)
+- [Release Engineering](docs/operations/RELEASE.md) · [Roadmap](docs/roadmap/ROADMAP.md)
+- [ADRs](docs/adr/) · [References](docs/references.md) · [Glossary](docs/glossary.md)
+
+## Proposed repository layout
+
+```text
+image2native/
+├── Cargo.toml / Cargo.lock / rust-toolchain.toml
+├── README.md / WHITEPAPER.md / BLUEPRINT.md
+├── apps/
+│   ├── image2native-cli/
+│   ├── image2native-launcher/
+│   └── image2native-daemon/          # optional; never required for core CLI
+├── crates/
+│   ├── i2n-model/                    # shared domain types
+│   ├── i2n-oci/                      # OCI image/index/config parsing
+│   ├── i2n-registry/                 # OCI Distribution client
+│   ├── i2n-fetcher/                  # blob transfer and retries
+│   ├── i2n-digest/                   # digest parsing and verification
+│   ├── i2n-cache/                    # content-addressed cache
+│   ├── i2n-layer/                    # layer decode/application
+│   ├── i2n-rootfs/                   # logical filesystem model
+│   ├── i2n-inspector/                # static image inspection
+│   ├── i2n-ir/                       # NIR schema and validation
+│   ├── i2n-analyzer/                 # compatibility and policy analysis
+│   ├── i2n-compiler/                 # pipeline orchestration
+│   ├── i2n-artifact/                 # I2N bundle reader/writer
+│   ├── i2n-sbom/ / i2n-signing/ / i2n-provenance/
+│   ├── i2n-runtime/ / i2n-supervisor/
+│   ├── i2n-platform/                 # backend contracts
+│   ├── i2n-platform-linux/
+│   ├── i2n-platform-macos/
+│   ├── i2n-platform-windows/
+│   ├── i2n-security/ / i2n-diagnostics/
+│   └── i2n-network/ / i2n-storage/
+├── platform/{linux,macos,windows}/   # thin native bridges
+├── guest/{agent,init,kernel,rootfs}/
+├── schemas/ tests/ docs/ scripts/
 ```
 
-If `rustup` is not installed, install Rust using the official rustup instructions first.
-The scaffold targets Rust `1.92.0` by default; change `rust-toolchain.toml` and the
-`RUST_TOOLCHAIN` repository variable together when intentionally upgrading.
+## First implementation target
 
-## Included
+Deliver a complete Linux vertical slice before building desktop virtualization backends: OCI resolve → verify → layer reconstruction → NIR → compatibility report → Linux runtime bundle → I2N artifact → launch. This validates the compiler core before adding host-specific VM integrations.
 
-- `rust-toolchain.toml`: pinned toolchain, `rustfmt`, `clippy`
-- `.cargo/config.toml`: reproducible build defaults and useful aliases
-- `scripts/`: diagnostics, disk audit, safe cleanup, bootstrap, checks, build benchmark
-- `.github/actions/`: reusable composite actions
-- `.github/workflows/`: CI, security, and release workflows
-- `.devcontainer/`: containerized development environment
-- `docs/`: architecture, cache, CI, security, and maintenance notes
-- `Makefile`: standard developer commands
+## Scope boundaries
 
-## First-use checklist
+**In scope:** OCI ingestion; multi-architecture selection; rootfs reconstruction; compatibility analysis; native launchers; Linux execution; macOS and Windows Linux-guest execution; integrity/signing/SBOM; updates; optional source compilation.
 
-- [ ] Review `Cargo.toml`, package name, license, and repository URLs.
-- [ ] Run `bash scripts/doctor.sh` and `bash scripts/disk-audit.sh`.
-- [ ] Run `bash scripts/bootstrap.sh`.
-- [ ] Run `make check`.
-- [ ] Configure repository Actions permissions and branch protection.
-- [ ] Pin third-party GitHub Actions to reviewed full commit SHAs before production use.
-- [ ] Configure cloud credentials only for trusted branches/environments.
-- [ ] For S3 caching, configure bucket, region, IAM permissions, and GitHub OIDC separately.
-- [ ] Review `docs/SECURITY.md` and `docs/CACHE.md`.
-
-## Important notes
-
-- The sample crate is intentionally small and is meant to be replaced by your application.
-- `sccache` remote caching is optional. Local builds work without cloud credentials.
-- `cargo audit` and `cargo deny` are installed as optional developer tools; CI handles them
-  in the security workflow.
-- Release publication is intentionally not automatic. Add registry credentials and a
-  protected GitHub Environment only after reviewing the release process.
+**Not in the first release:** generic binary translation; kernel emulation; guaranteed support for all images; Docker Desktop parity; automatic privileged execution; full Compose support; GUI-first product; Kubernetes orchestration.
